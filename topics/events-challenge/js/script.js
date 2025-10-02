@@ -65,3 +65,21 @@ function displayScore() {
 function lose() {
     gameOver = true
 }
+
+//STEP 3
+function keyPressed() {
+    lose()
+}
+function keyIsDown() {
+    lose()
+}
+function keyReleased() {
+    lose()
+}
+function keyTyped() {
+    lose()
+}
+
+
+
+
