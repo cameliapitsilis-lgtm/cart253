@@ -61,51 +61,29 @@ function displayScore() {
     pop();
 }
 
-//LOSE FUNCTION
+//STEP 2
 function lose() {
     gameOver = true
 }
 
 //STEP 3
-function keyPressed() {
-    lose()
-}
-function keyIsDown() {
-    lose()
-}
-function keyReleased() {
-    lose()
-}
-function keyTyped() {
-    lose()
-}
+window.addEventListener('keypress', lose);
+window.addEventListener('keydown', lose);
+window.addEventListener('keyup', lose);
 
 //STEP 4
-function mousePressed() {
-    lose()
-}
-function mouseClicked() {
-    lose()
-}
-function mouseMoved() {
-    lose()
-}
-function mouseReleased() {
-    lose()
-}
-function mouseWheel() {
-    lose()
-}
+window.addEventListener('mousedown', lose);
+window.addEventListener('click', lose);
+window.addEventListener('mousemove', lose);
+window.addEventListener('mouseup', lose);
+window.addEventListener('wheel', lose);
+
 //STEP 4 - MOBILE
-function touchPressed() {
-    lose()
-}
-function touchMoved() {
-    lose()
-}
-function touchStarted() {
-    lose()
-}
+window.addEventListener('touchstart', lose);
+window.addEventListener('touchend', lose);
+window.addEventListener('touchmove', lose);
+window.addEventListener('touchcancel', lose);
+
 
 //STEP 5
 window.addEventListener("offline", lose);
