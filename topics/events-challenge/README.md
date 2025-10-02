@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# EVENT CHALLENGE
 
 Camelia Pitsilis
 Ima Williams
