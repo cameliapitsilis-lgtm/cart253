@@ -161,10 +161,13 @@ function draw() {
         fill(255, 238, 84);
         rect(180, 480, 160, 20)
     } else {
-        //NOTHING)
+        //NOTHING
     }
 }
 //ADDING JEWELRY AT CLICK
 function mouseClicked() {
-    hasClicked = true
+    hasClicked = !hasClicked;
+    if (!hasClicked) {
+        //NOTHING
+    }
 }
