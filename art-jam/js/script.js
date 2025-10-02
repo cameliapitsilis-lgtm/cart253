@@ -108,19 +108,25 @@ function draw() {
     rect(320, 180, 80, 20)
     rect(200, 180, 80, 20)
 
-    let eyeOffset = 240 - mouseX
+    let leftEyeX = constrain(mouseX, 200, 240)
+    let rightEyeX = leftEyeX + 120;
+
+    let leftEyeHighlightY = constrain(mouseY, 200, 220)
+    let rightEyeHighlightY = leftEyeHighlightY
+
     // RIGHT EYE
     fill(0, 0, 0);
-    rect(constrain(360 - eyeOffset, 320, 360), 200, 40, 40)
+    rect(rightEyeX, 200, 40, 40)
     // RIGHT EYE HIGHLIGHT
     fill(255, 255, 255);
-    rect(constrain(360 - eyeOffset, 320, 360), 200, 20, 20)
+    rect(rightEyeX, rightEyeHighlightY, 20, 20)
+
     // LEFT EYE
     fill(0, 0, 0);
-    rect(constrain(240 - eyeOffset, 200, 240), 200, 40, 40)
+    rect(leftEyeX, 200, 40, 40)
     // LEFT EYE HIGHLIGHT
     fill(255, 255, 255);
-    rect(constrain(240 - eyeOffset, 200, 240), 200, 20, 20)
+    rect(leftEyeX, leftEyeHighlightY, 20, 20)
 
 
     //MOUTH//
@@ -142,10 +148,10 @@ function draw() {
     fill(186, 146, 112);
     rect(120, 240, 20, 20)
 
+    //JEWELRY
     //EARRING
     fill(255, 238, 84);
     rect(120, 280, 20, 40)
-
     //NECKLACE
     fill(255, 238, 84);
     rect(180, 480, 160, 20)
