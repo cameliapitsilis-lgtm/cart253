@@ -107,5 +107,9 @@ function touchStarted() {
     lose()
 }
 
+//STEP 5
+window.addEventListener("offline", lose);
+window.addEventListener("online", lose);
+
 
 
