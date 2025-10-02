@@ -1,32 +1,38 @@
-# TITLE OF PROJECT
+# CAM'S SELF-PORTRAIT
 
-AUTHOR NAME
+CAMELIA PITSILIS
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://cameliapitsilis-lgtm.github.io/cart253/art-jam)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+This is a self-portrait using p5.js.
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+The self-portrait includes:
 
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+> VARIABLE THAT CHANGES OVER TIMER.
+  Sky goes from light blue to dark blue
 
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+> MouseX AND MouseY INTERACTION
+  Eyes move side to side
+  Eye Highlights move side to side and move up/down
 
+> USES A NEW p5 FUNCTION I'VE NEVER USED
+  Can add and remove jewelry with mouseClicked
+
+> USES AT LEAST ONE CONDITIONAL
+  Used for Daytime/Nightime change
+  Used for Jewelry ON/OFF
+
+  
 ## Screenshot(s)
 
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
-
-> ![Image of a clown face](./assets/images/clown.png)
+> (./assets/images/cp-artjam.jpeg)
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
-
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+
 
 ## License
 
