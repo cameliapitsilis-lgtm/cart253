@@ -111,5 +111,8 @@ function touchStarted() {
 window.addEventListener("offline", lose);
 window.addEventListener("online", lose);
 
+//STEP 6
+window.addEventListener("visibilitychange", lose);
+
 
 
