@@ -60,3 +60,8 @@ function displayScore() {
     text(floor(score), width / 2, height / 2);
     pop();
 }
+
+//LOSE FUNCTION
+function lose() {
+    gameOver = true
+}
