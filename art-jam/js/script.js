@@ -6,7 +6,8 @@
  */
 
 "use strict";
-//VARIABLE THAT CHANGES OVERTIME
+
+//VARIABLE THAT CHANGES OVERTIME -------------------------------------//
 //Is it Nightime? true or false
 let isNight = false;
 //Counts frame
@@ -14,16 +15,19 @@ let timer = 0;
 //How many frames before colour change
 let wait = 120; // Default is 60fps so 120 frames = ~2 seconds at 60fps
 
-//Is the Jewelry On? No.
+//NEW p5.js FUNCTION -------------------------------------------------//
+//Using mouseClicked
+//Is the Jewelry On/Off?
 let hasClicked = false;
 
-
+//START DRAWING ------------------------------------------------------//
 function setup() {
     createCanvas(500, 500);
     noStroke();
 }
 
 function draw() {
+    //CONDITIONAL ---------------------------------------------------//
     // Switch sky color based on isNight
     if (isNight) {
         background(38, 29, 117); // Nightime
@@ -42,15 +46,13 @@ function draw() {
         timer = 0;
     }
 
-    // Reset timer
+    // SELF-PORTRAIT //(x,y,w,h)-------------------------------------//
 
-    //Self-Portrait//(x,y,w,h)
-
-    //FACE COLOUR
+    //FACE COLOUR ---------------------------------------------------//
     fill(242, 201, 167);
     rect(90, 100, 350, 400)
 
-    //HAIR//
+    //HAIR// --------------------------------------------------------//
     fill(0, 0, 0);
     rect(160, 20, 200, 20)
     rect(120, 40, 300, 20)
@@ -77,41 +79,43 @@ function draw() {
     rect(400, 380, 20, 120)
     rect(420, 320, 20, 200)
 
-    //FACE//
-    //
+    //HEAD AND NECK// ------------------------------------------------//
     //NOSE//
     fill(186, 146, 112);
     rect(320, 260, 20, 20)
     rect(300, 280, 40, 20)
-    //RIGHT//
+
+    //RIGHT FACE//
     rect(420, 180, 20, 40)
     rect(440, 220, 20, 80)
     rect(420, 300, 20, 20)
     rect(400, 320, 20, 60)
     rect(380, 380, 20, 20)
     rect(360, 400, 20, 20)
-    //LEFT//
+    //LEFT FACE//
     rect(140, 300, 20, 40)
     rect(140, 340, 20, 20)
     rect(160, 360, 20, 20)
     rect(180, 380, 20, 20)
     rect(200, 400, 20, 20)
     rect(220, 420, 140, 20)//CHIN LINE
+
     //NECK//
     rect(180, 400, 20, 100)
     rect(320, 420, 20, 80)
-
-    //SHADOWS
+    //NECK SHADOW
     fill(120, 84, 54);
     rect(260, 440, 80, 20)
     rect(280, 460, 60, 20)
     rect(300, 480, 40, 20)
 
+    //EYES -----------------------------------------------------------//
     //EYE LASHES
     fill(0, 0, 0);
     rect(320, 180, 80, 20)
     rect(200, 180, 80, 20)
 
+    //USING mouseX / mouseY
     //EYE MOVEMENT
     let leftEyeX = constrain(mouseX, 200, 240)
     let rightEyeX = leftEyeX + 120;
@@ -133,25 +137,27 @@ function draw() {
     fill(255, 255, 255);
     rect(leftEyeX, leftEyeHighlightY, 20, 20)
 
-    //MOUTH//
+    //MOUTH// --------------------------------------------------------//
     fill(191, 2, 71);
     rect(260, 320, 80, 20)
     rect(260, 340, 20, 20)
     rect(280, 360, 60, 20)
 
-    //TEETH
+    //TEETH ----------------------------------------------------------//
     fill(255, 255, 255);
     rect(280, 340, 60, 20)
 
-    //BLUSH
+    //BLUSH ----------------------------------------------------------//
     fill(255, 115, 190);
     rect(200, 260, 40, 20)
     rect(380, 260, 40, 20)
 
-    //EAR//
+    //EAR// ----------------------------------------------------------//
     fill(186, 146, 112);
     rect(120, 240, 20, 20)
 
+    //CONDITIONAL ---------------------------------------------------//
+    //ADDING JEWELRY AT CLICK
     if (hasClicked) {
         //JEWELRY
         //EARRING
@@ -164,6 +170,8 @@ function draw() {
         //NOTHING
     }
 }
+
+//NEW p5.js FUNCTION ------------------------------------------------//
 //ADDING JEWELRY AT CLICK
 function mouseClicked() {
     hasClicked = !hasClicked;
