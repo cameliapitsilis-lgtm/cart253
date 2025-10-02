@@ -14,6 +14,10 @@ let timer = 0;
 //How many frames before colour change
 let wait = 120; // Default is 60fps so 120 frames = ~2 seconds at 60fps
 
+//Is the Jewelry On? No.
+let hasClicked = false;
+
+
 function setup() {
     createCanvas(500, 500);
     noStroke();
@@ -108,6 +112,7 @@ function draw() {
     rect(320, 180, 80, 20)
     rect(200, 180, 80, 20)
 
+    //EYE MOVEMENT
     let leftEyeX = constrain(mouseX, 200, 240)
     let rightEyeX = leftEyeX + 120;
 
@@ -128,7 +133,6 @@ function draw() {
     fill(255, 255, 255);
     rect(leftEyeX, leftEyeHighlightY, 20, 20)
 
-
     //MOUTH//
     fill(191, 2, 71);
     rect(260, 320, 80, 20)
@@ -148,11 +152,19 @@ function draw() {
     fill(186, 146, 112);
     rect(120, 240, 20, 20)
 
-    //JEWELRY
-    //EARRING
-    fill(255, 238, 84);
-    rect(120, 280, 20, 40)
-    //NECKLACE
-    fill(255, 238, 84);
-    rect(180, 480, 160, 20)
+    if (hasClicked) {
+        //JEWELRY
+        //EARRING
+        fill(255, 238, 84);
+        rect(120, 280, 20, 40)
+        //NECKLACE
+        fill(255, 238, 84);
+        rect(180, 480, 160, 20)
+    } else {
+        //NOTHING)
+    }
+}
+//ADDING JEWELRY AT CLICK
+function mouseClicked() {
+    hasClicked = true
 }
