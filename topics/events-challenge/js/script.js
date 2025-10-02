@@ -80,6 +80,32 @@ function keyTyped() {
     lose()
 }
 
+//STEP 4
+function mousePressed() {
+    lose()
+}
+function mouseClicked() {
+    lose()
+}
+function mouseMoved() {
+    lose()
+}
+function mouseReleased() {
+    lose()
+}
+function mouseWheel() {
+    lose()
+}
+//STEP 4 - MOBILE
+function touchPressed() {
+    lose()
+}
+function touchMoved() {
+    lose()
+}
+function touchStarted() {
+    lose()
+}
 
 
 
