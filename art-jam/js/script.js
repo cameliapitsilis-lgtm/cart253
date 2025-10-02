@@ -6,7 +6,7 @@
  */
 
 "use strict";
-
+//VARIABLE THAT CHANGES OVERTIME
 //Is it Nightime? true or false
 let isNight = false;
 //Counts frame
@@ -73,8 +73,6 @@ function draw() {
     rect(400, 380, 20, 120)
     rect(420, 320, 20, 200)
 
-
-
     //FACE//
     //
     //NOSE//
@@ -105,17 +103,25 @@ function draw() {
     rect(280, 460, 60, 20)
     rect(300, 480, 40, 20)
 
-    //EYES//
+    //EYE LASHES
     fill(0, 0, 0);
     rect(320, 180, 80, 20)
-    rect(360, 180, 40, 60)
     rect(200, 180, 80, 20)
-    rect(240, 180, 40, 60)
 
-    //EYE HIGHLIGHT
+    let eyeOffset = 240 - mouseX
+    // RIGHT EYE
+    fill(0, 0, 0);
+    rect(constrain(360 - eyeOffset, 320, 360), 200, 40, 40)
+    // RIGHT EYE HIGHLIGHT
     fill(255, 255, 255);
-    rect(360, 200, 20, 20)
-    rect(240, 200, 20, 20)
+    rect(constrain(360 - eyeOffset, 320, 360), 200, 20, 20)
+    // LEFT EYE
+    fill(0, 0, 0);
+    rect(constrain(240 - eyeOffset, 200, 240), 200, 40, 40)
+    // LEFT EYE HIGHLIGHT
+    fill(255, 255, 255);
+    rect(constrain(240 - eyeOffset, 200, 240), 200, 20, 20)
+
 
     //MOUTH//
     fill(191, 2, 71);
