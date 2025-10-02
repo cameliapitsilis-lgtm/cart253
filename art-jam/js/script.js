@@ -7,21 +7,38 @@
 
 "use strict";
 
-/**
- * Creating Canvas
-*/
+//Is it Nightime? true or false
+let isNight = false;
+//Counts frame
+let timer = 0;
+//How many frames before colour change
+let wait = 120; // Default is 60fps so 120 frames = ~2 seconds at 60fps
+
 function setup() {
-    //Canvas is 500px wide and 700px tall
-    createCanvas(500, 500)
+    createCanvas(500, 500);
     noStroke();
 }
 
-/**
- * Drawing Myself
-*/
 function draw() {
-    //Background Colour RGB
-    background(3, 0, 117)
+    // Switch sky color based on isNight
+    if (isNight) {
+        background(38, 29, 117); // Nightime
+    } else {
+        background(161, 232, 255); // Daytime color
+    }
+
+    // Count frames, switch after delay
+    timer = timer + 1;
+    if (timer > wait) {
+        if (isNight) {
+            isNight = false;// If it was night, switch to day
+        } else {
+            isNight = true;// If it was day, switch to night
+        }
+        timer = 0;
+    }
+
+    // Reset timer
 
     //Self-Portrait//(x,y,w,h)
 
