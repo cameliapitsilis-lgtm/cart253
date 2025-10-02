@@ -1,24 +1,14 @@
 # TITLE OF PROJECT
 
-AUTHOR NAME
+Camelia Pitsilis
+Ima Williams
+Philippe Hebert
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://cameliapitsilis-lgtm.github.io/cart253/topics/events-challenge)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
-
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
-
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
-
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
-
-## Screenshot(s)
-
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
-
-> ![Image of a clown face](./assets/images/clown.png)
+This is the event challenge.
 
 ## Attribution
 
