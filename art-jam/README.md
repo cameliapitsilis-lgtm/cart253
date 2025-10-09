@@ -10,7 +10,7 @@ This is a self-portrait using p5.js.
 
 The self-portrait includes:
 
-> VARIABLE THAT CHANGES OVER TIMER.
+> VARIABLE THAT CHANGES OVER TIME.
   Sky goes from light blue to dark blue
 
 > MouseX AND MouseY INTERACTION
