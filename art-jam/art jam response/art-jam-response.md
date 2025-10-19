@@ -1,0 +1,13 @@
+## Camelia's Art Jam Response
+
+### Émile Bédard
+
+Émile Bédard’s Art Jam project really stands out because of its originality and the sense of movement it creates. The background objects passing by make the scene feel alive and dynamic, and I like how the cyclist responds to user input, like moving the mouse or tilting on mobile. It adds a fun interactive element that makes you want to keep exploring the project. One small improvement could be making the "D" and "H" keys reversible, so users can toggle modes more easily instead of only once. The README.md is clear and gives good insight into how the project works, including mobile interactions, which is useful for someone viewing it on a desktop like me. The code itself is easy to follow, and the comments are really helpful for understanding what each part does. The only minor thing is that there’s a lot of spacing between sections, which makes the code a bit longer than it needs to be. Overall, it’s a creative, interactive project with strong documentation.
+
+### Jake Hayduk
+
+Jake Hayduk’s project is really cute and fun to play with. How the character moves when you press the keys is really interesting. One idea to improve the visual impact would be to use brighter colors for the background or the character’s clothes so that the figure stands out more. Including instructions on the screen would also help anyone trying the interactive parts for the first time. The README.md is fine, but it could include more about the creative choices made in the description and maybe a screenshot of the final project to give viewers a better sense of what it looks like. The code is straightforward and simple to understand, which makes it easy to read. Adding comments about what the numbers in the shapes represent—like positions, widths, or heights—would make it even easier to follow. Overall, the project is approachable, and easy to interact with.
+
+### Nerly Cadet
+
+Nerly Cadet’s project is really impressive, especially the way the unicorn horn lights up and adds an interactive touch. The aesthetic is strong and playful, and it’s clear a lot of thought went into the design. The README.md is very clear and complete, though it might be better to remove any extra directives written by Pippin and just keep the project information. The code is easy to understand, but adding comments in the draw function to explain what the numbers mean would make it even clearer for first time readers. Additionally, breaking the draw function into smaller sections for each part of the drawing could also help make the code more flexible and making it easier to adjust variables and expand the project in the future. Overall, this project is creative, interactive, and visually engaging.
