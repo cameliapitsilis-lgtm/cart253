@@ -1,13 +1,25 @@
 /**
- * Frogfrogfrog
- * Pippin Barr
+ * Frog of Destiny
+ * Camélia Pitsilis
  * 
- * A game of catching flies with your frog-tongue
+ * Frog of Destiny is a game of catching objects with your frog's tongue.
+ * The object you catch depends on the myth you choose.
+ * There are two options: Greek Oracle Frog and Chinese Fortune Frog.
+ * 
+ * In Ancient Greek mythology, frogs were often associated with prophecy. So in the game Greek Oracle Frog Game,
+ * there will be two types of flying prophetical orbs: Golden Truthful Prophecies and Purple False Prophecies.
+ * The Frog will have to eat the Golden Truthful Prophecies to gain as many Wisdom Points before the time ends.
+ * If the Frog eats the Purple False Prophecies, the frog dies.
+ * 
+ * In Chinese Mythology, Chan Chu (蟾蜍) is the Three-Legged Mythical Frog that brings fortune.
+ * So in the Chinese Fortune Frog Game, the frog will have to catch as many Golden Coins as possible
+ * before the time runs out. However, if the frog catches the Golden Coins too quickly, he will lose
+ * Fortune Points because of greed.
  * 
  * Instructions:
  * - Move the frog with your mouse
  * - Click to launch the tongue
- * - Catch flies
+ * - Catch object
  * 
  * Made with p5
  * https://p5js.org/
