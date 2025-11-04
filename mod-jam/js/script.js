@@ -2,9 +2,9 @@
  * Frog of Destiny
  * Camélia Pitsilis
  * 
- * Frog of Destiny is a game of catching objects with your frog's tongue.
- * The object you catch depends on the myth you choose.
- * There are two options: Greek Oracle Frog and Chinese Fortune Frog.
+* Frog of Destiny is a myth-inspired, frog tongue catching game where the player controls a
+mystical frog that seeks either wisdom or fortune.
+* There are two modes: Greek Oracle Frog and Chinese Fortune Frog.
  * 
  * In Ancient Greek mythology, frogs were often associated with prophecy. So in the game Greek Oracle Frog Game,
  * there will be two types of flying prophetical orbs: Golden Truthful Prophecies and Purple False Prophecies.
