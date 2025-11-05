@@ -47,6 +47,10 @@ let greedMessageTimer = 0;
 let startBg;
 let oracleBg;
 let fortuneBg;
+let frogImg;
+let goldenFlyImg;
+let purpleFlyImg;
+let coinImg;
 
 // Our frog
 const frog = {
@@ -80,9 +84,18 @@ const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 /* Creates the canvas and initializes the fly */
 // Game Visual Design Images
 function preload() {
-    startBg = loadImage("startscreen.png");
-    oracleBg = loadImage("oraclemode.png");
-    fortuneBg = loadImage("fortunemode.png");
+    //Game Background
+    startBg = loadImage("assets/images/startscreen.png");
+    oracleBg = loadImage("assets/images/oraclemode.png");
+    fortuneBg = loadImage("assets/images/fortunemode.png");
+    //Game Components
+    // Frog
+    frogImg = loadImage("assets/images/frog.png");
+    // Oracle Mode
+    goldenFlyImg = loadImage("assets/images/goldorb.png");
+    purpleFlyImg = loadImage("assets/images/purpleorb.png");
+    // Fortune Mode
+    coinImg = loadImage("assets/images/coins.png");
 }
 
 function setup() {
@@ -354,9 +367,8 @@ function drawFrog() {
 
     // Draw the frog's body
     push();
-    fill("#00ff00");
-    noStroke();
-    ellipse(frog.body.x, frog.body.y, frog.body.size);
+    imageMode(CENTER);
+    image(frogImg, frog.body.x, frog.body.y, frog.body.size, frog.body.size);
     pop();
 }
 
