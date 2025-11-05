@@ -31,6 +31,11 @@
 // Game Home Page with Title and Instructions
 let gamemode = "start";
 
+// Adding Scoring System
+let wisdomPoints = 0;
+let fortunePoints = 0;
+const maxPoints = 10;
+
 // Our frog
 const frog = {
     // The frog's body has a position and size
