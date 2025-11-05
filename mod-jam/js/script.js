@@ -34,6 +34,7 @@ let gamemode = "start";
 // Adding Scoring System
 let wisdomPoints = 0;
 let fortunePoints = 0;
+//Game Ends when you reach 10pts
 const maxPoints = 10;
 
 // Our frog
@@ -73,8 +74,8 @@ function setup() {
     // Give the fly its first random position
     resetFly();
 }
-//MAIN DRAW FUNCTION ------------------//
 
+//MAIN DRAW FUNCTION ------------------//
 function draw() {
     background("#87ceeb");
 
@@ -96,7 +97,6 @@ function draw() {
 }
 
 // GAME HOME PAGE COMPONENTS
-
 function drawStartScreen() {
     fill(0);
     textAlign(CENTER);
@@ -106,8 +106,20 @@ function drawStartScreen() {
     text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, 250);
 }
 
-// ACTIVATION OF DIFFERENT GAME MODES USING KEYPRESSED
+//SCORING SYSTEM COMPONENTS
+function drawScore() {
+    fill(0);
+    textSize(24);
+    if (gamemode === "oracle") {
+        // text("what is written:" + variable, x,y))
+        text("Wisdom Points: " + wisdomPoints, 10, 30);
+    } else if (gamemode === "fortune") {
+        text("Fortune Points: " + fortunePoints, 10, 30);
+    }
+}
 
+
+// ACTIVATION OF DIFFERENT GAME MODES USING KEYPRESSED
 function keyPressed() {
     if (gamemode === "start") {
         if (key === 'O' || key === 'o') {
