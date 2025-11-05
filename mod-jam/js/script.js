@@ -134,6 +134,8 @@ function keyPressed() {
         }
     }
 }
+
+//FLY
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
@@ -166,6 +168,7 @@ function resetFly() {
     fly.y = random(0, 300);
 }
 
+//FROG
 /**
  * Moves the frog to the mouse position on x
  */
@@ -244,12 +247,13 @@ function checkTongueFlyOverlap() {
         if (gamemode === "oracle") {
             wisdomPoints++;
         }
-    } else if (gamemode === "fortune") {
-        fortunePoints++;
-    }
+        else if (gamemode === "fortune") {
+            fortunePoints++;
+        }
 
-    // Reset the fly
-    resetFly();
+        // Reset the fly
+        resetFly();
+    }
 }
 
 /**
