@@ -59,24 +59,44 @@ const fly = {
     speed: 3
 };
 
-/**
- * Creates the canvas and initializes the fly
- */
+//SETUP -------------------------------//
+/* Creates the canvas and initializes the fly */
+
 function setup() {
     createCanvas(640, 480);
 
     // Give the fly its first random position
     resetFly();
 }
+//MAIN DRAW FUNCTION ------------------//
 
 function draw() {
     background("#87ceeb");
-    moveFly();
-    drawFly();
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
+
+    //Show a different screen depending on the game mode
+
+    if (gamemode === "start") {
+        drawStartScreen();
+    } else if (gamemode === "oracle" || gamemode === "fortune") {
+        // Game Components are here
+        moveFly();
+        drawFly();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkTongueFlyOverlap();
+    } else if (gamemode === "end") {
+        drawEndScreen();
+    }
+}
+
+function drawStartScreen() {
+    fill(0);
+    textAlign(CENTER);
+    textSize(48);
+    text("Frog of Destiny", width / 2, 150);
+    textSize(24);
+    text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, 250);
 }
 
 /**
