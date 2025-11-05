@@ -78,14 +78,15 @@ const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 
 //SETUP -------------------------------//
 /* Creates the canvas and initializes the fly */
-
-function setup() {
-    createCanvas(640, 480);
-
-    // Game Visual Design Images
+// Game Visual Design Images
+function preload() {
     startBg = loadImage("startscreen.png");
     oracleBg = loadImage("oraclemode.png");
     fortuneBg = loadImage("fortunemode.png");
+}
+
+function setup() {
+    createCanvas(640, 480);
 
     // Give the fly its first random position
     resetFly();
