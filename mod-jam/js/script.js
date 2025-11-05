@@ -61,6 +61,9 @@ const frog = {
 const goldenFly = { x: 0, y: 0, size: 20, speed: 3 };
 const purpleFly = { x: 10, y: 10, size: 20, speed: 5 };
 
+//FORTUNE MODE FLYING OBJECT
+const coin = { x: 0, y: 0, size: 20, speed: 3 };
+
 //SETUP -------------------------------//
 /* Creates the canvas and initializes the fly */
 
