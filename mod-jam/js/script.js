@@ -82,20 +82,33 @@ const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 function setup() {
     createCanvas(640, 480);
 
+    // Game Visual Design Images
+    startBg = loadImage("startscreen.png");
+    oracleBg = loadImage("oraclemode.png");
+    fortuneBg = loadImage("fortunemode.png");
+
     // Give the fly its first random position
     resetFly();
 }
 
 //MAIN DRAW FUNCTION ------------------//
 function draw() {
-    background("#87ceeb");
+    background("#26005cff");
 
     //Show a different screen depending on the game mode
 
     if (gamemode === "start") {
         drawStartScreen();
     } else if (gamemode === "oracle") {
-        // Game Components are here
+
+        // Background 
+        if (oracleBg) {
+            image(oracleBg, 0, 0, width, height);
+        } else {
+            background("#26005cff");
+        }
+
+        // Game Components Here
         moveOracleFly();
         drawOracleFly();
         moveFrog();
@@ -105,6 +118,13 @@ function draw() {
         drawScore();
     }
     else if (gamemode === "fortune") {
+        // Background
+        if (fortuneBg) {
+            image(fortuneBg, 0, 0, width, height);
+        } else {
+            background("#26005cff");
+        }
+        //Game Components Here
         moveCoinFly();
         drawCoinFly();
         moveFrog();
@@ -120,6 +140,11 @@ function draw() {
 
 // GAME HOME PAGE COMPONENTS
 function drawStartScreen() {
+    if (startBg) {
+        image(startBg, 0, 0, width, height); // draw background
+    } else {
+        background("#26005cff"); // fallback color
+    }
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(48);
