@@ -36,10 +36,12 @@ let fortunePoints = 0;
 //Adding End Game Message
 let endMessage = "";
 //Game Ends when you reach 10pts
-const maxPoints = 1;
+const maxPoints = 10;
 // Adding Greed Penalty to Fortune Mode//
 // Every time a coin is eaten, it checks how much time passed since the last coin.
 let lastCoinCatchTime = 0;
+let greedMessage = "";
+let greedMessageTimer = 0;
 
 // Our frog
 const frog = {
@@ -144,6 +146,15 @@ function drawScore() {
         text("Wisdom Points: " + wisdomPoints, 30, 30);
     } else if (gamemode === "fortune") {
         text("Fortune Points: " + fortunePoints, 30, 30);
+    }
+    //FORTUNE MODE GREED PENALTY MESSAGE
+    // Show "Too Greedy!" message
+    if (greedMessageTimer > 0) {
+        fill("#ff0000ff");
+        textSize(24);
+        textAlign(CENTER, CENTER);
+        text(greedMessage, width / 2, height / 2);
+        greedMessageTimer--;
     }
 }
 
@@ -353,11 +364,23 @@ function checkOracleTongue() {
 
 //FORTUNE MODE TONGUE//
 function checkFortuneTongue() {
+    let now = millis(); //time component for the greed penalty
+
     // check first coin
     const d1 = dist(frog.tongue.x, frog.tongue.y, coinFly.x, coinFly.y);
     const eaten1 = d1 < (frog.tongue.size / 2 + coinFly.size / 2);
     if (eaten1 && frog.tongue.state === "outbound") {
-        fortunePoints++;
+        let timeSinceLast = now - lastCoinCatchTime;
+        if (timeSinceLast < 2000) {
+            // too greedy!
+            fortunePoints = max(0, fortunePoints - 1);
+            greedMessage = "Too Greedy! -1pts";
+            greedMessageTimer = 60; // show ~1 second
+        } else {
+            fortunePoints++;
+            greedMessage = "";
+        }
+        lastCoinCatchTime = now;
         resetCoinFly(coinFly);
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
@@ -365,11 +388,21 @@ function checkFortuneTongue() {
             endMessage = "Fortune Favours You!";
         }
     }
+
     // check second coin
     const d2 = dist(frog.tongue.x, frog.tongue.y, coinFly2.x, coinFly2.y);
     const eaten2 = d2 < (frog.tongue.size / 2 + coinFly2.size / 2);
     if (eaten2 && frog.tongue.state === "outbound") {
-        fortunePoints++;
+        let timeSinceLast = now - lastCoinCatchTime;
+        if (timeSinceLast < 2000) {
+            fortunePoints = max(0, fortunePoints - 1);
+            greedMessage = "Too Greedy!";
+            greedMessageTimer = 60;
+        } else {
+            fortunePoints++;
+            greedMessage = "";
+        }
+        lastCoinCatchTime = now;
         resetCoinFly(coinFly2);
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
@@ -377,11 +410,21 @@ function checkFortuneTongue() {
             endMessage = "Fortune Favours You!";
         }
     }
+
     // check third coin
     const d3 = dist(frog.tongue.x, frog.tongue.y, coinFly3.x, coinFly3.y);
     const eaten3 = d3 < (frog.tongue.size / 2 + coinFly3.size / 2);
     if (eaten3 && frog.tongue.state === "outbound") {
-        fortunePoints++;
+        let timeSinceLast = now - lastCoinCatchTime;
+        if (timeSinceLast < 2000) {
+            fortunePoints = max(0, fortunePoints - 1);
+            greedMessage = "Too Greedy!";
+            greedMessageTimer = 60;
+        } else {
+            fortunePoints++;
+            greedMessage = "";
+        }
+        lastCoinCatchTime = now;
         resetCoinFly(coinFly3);
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
