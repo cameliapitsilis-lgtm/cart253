@@ -33,6 +33,8 @@ let gamemode = "start";
 // Adding Scoring System
 let wisdomPoints = 0;
 let fortunePoints = 0;
+//Adding End Game Message
+let endMessage = "";
 //Game Ends when you reach 10pts
 const maxPoints = 1;
 
@@ -106,16 +108,13 @@ function drawStartScreen() {
     text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, 250);
 }
 
-//GAMEOVER SCREEN COMPONENTS
+//END SCREEN COMPONENTS
 function drawEndScreen() {
+    background("#000000ff");
     textAlign(CENTER);
     textSize(48);
-    fill(0);
-    if (gamemode === "end" && wisdomPoints >= maxPoints) {
-        text("Wisdom Ascended!", width / 2, height / 2);
-    } else if (gamemode === "end" && fortunePoints >= maxPoints) {
-        text("Fortune Favours You!", width / 2, height / 2);
-    }
+    fill("#ffffffff");
+    text(endMessage, width / 2, height / 2);
 }
 
 //SCORING SYSTEM COMPONENTS
@@ -257,19 +256,25 @@ function checkTongueFlyOverlap() {
     const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
 
     if (eaten) {
+        frog.tongue.state = "inbound"; // retract tongue
+        resetFly();
 
-        // Bring back the tongue
-        frog.tongue.state = "inbound";
-
+        // Increase points depending on mode
         if (gamemode === "oracle") {
             wisdomPoints++;
-        }
-        else if (gamemode === "fortune") {
+            // Check if max points reached → end game
+            if (wisdomPoints >= maxPoints) {
+                gamemode = "end";
+                endMessage = "Wisdom Becomes You!";
+            }
+        } else if (gamemode === "fortune") {
             fortunePoints++;
+            // Check if max points reached → end game
+            if (fortunePoints >= maxPoints) {
+                gamemode = "end";
+                endMessage = "Fortune Favours You!";
+            }
         }
-
-        // Reset the fly
-        resetFly();
     }
 }
 
