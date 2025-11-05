@@ -358,7 +358,7 @@ function checkFortuneTongue() {
     const eaten1 = d1 < (frog.tongue.size / 2 + coinFly.size / 2);
     if (eaten1 && frog.tongue.state === "outbound") {
         fortunePoints++;
-        resetCoinFly();
+        resetCoinFly(coinFly);
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
@@ -370,7 +370,7 @@ function checkFortuneTongue() {
     const eaten2 = d2 < (frog.tongue.size / 2 + coinFly2.size / 2);
     if (eaten2 && frog.tongue.state === "outbound") {
         fortunePoints++;
-        resetCoinFly();
+        resetCoinFly(coinFly2);
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
@@ -382,7 +382,7 @@ function checkFortuneTongue() {
     const eaten3 = d3 < (frog.tongue.size / 2 + coinFly3.size / 2);
     if (eaten3 && frog.tongue.state === "outbound") {
         fortunePoints++;
-        resetCoinFly();
+        resetCoinFly(coinFly3);
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
