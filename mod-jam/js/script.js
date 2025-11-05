@@ -59,7 +59,7 @@ const frog = {
 
 // ORACLE MODE FLYING OBJECT
 const goldenFly = { x: 0, y: 0, size: 20, speed: 3 };
-const purpleFly = { x: 0, y: 0, size: 20, speed: 3 };
+const purpleFly = { x: 10, y: 10, size: 20, speed: 5 };
 
 //SETUP -------------------------------//
 /* Creates the canvas and initializes the fly */
@@ -164,13 +164,11 @@ function moveOracleFly() {
     // Oracle Mode
     if (gamemode === "oracle") {
         goldenFly.x += goldenFly.speed;
-        if (goldenFly.x > width) {
-            resetFly();
-        }
         purpleFly.x += purpleFly.speed;
-        if (purpleFly.x > width) {
-            resetFly();
-        }
+
+        // reset if off screen
+        if (goldenFly.x > width) resetGoldenFly();
+        if (purpleFly.x > width) resetPurpleFly();
     }
     else if (gamemode === "fortune") {
         fly.y += fly.speed;
@@ -192,11 +190,8 @@ function drawOracleFly() {
 /*resets the fly*/
 function resetFly() {
     if (gamemode === "oracle") {
-        goldenFly.x = 0;
-        goldenFly.y = random(0, 300);
-
-        purpleFly.x = 0;
-        purpleFly.y = random(100, 300);
+        resetGoldenFly();
+        resetPurpleFly();
 
     } else if (gamemode === "fortune") {
         fly.x = random(300, 0); // anywhere across the screen
@@ -204,6 +199,16 @@ function resetFly() {
     }
 }
 
+function resetGoldenFly() {
+    goldenFly.x = 0;
+    goldenFly.y = random(0, 300);
+}
+
+function resetPurpleFly() {
+
+    purpleFly.x = 0;
+    purpleFly.y = random(100, 300);
+}
 //FROG-------------------------------------->
 /**
  * Moves the frog to the mouse position on x
