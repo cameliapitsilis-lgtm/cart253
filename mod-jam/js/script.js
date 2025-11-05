@@ -57,7 +57,7 @@ const frog = {
     }
 };
 
-// FLYING ORBS
+// ORACLE MODE FLYING OBJECT
 const goldenFly = { x: 0, y: 0, size: 20, speed: 3 };
 const purpleFly = { x: 0, y: 0, size: 20, speed: 3 };
 
@@ -172,20 +172,26 @@ function moveFly() {
     }
 }
 
-/*Draws the fly as a black circle*/
-function drawFly() {
+/*DRAW ORACLE MODE FLYING OBJECT*/
+function drawOracleFly() {
     push();
     noStroke();
-    fill("#000000");
-    ellipse(fly.x, fly.y, fly.size);
+    fill("#FFD700"); // golden orb
+    ellipse(goldenFly.x, goldenFly.y, goldenFly.size);
+    fill("#800080"); // purple orb
+    ellipse(purpleFly.x, purpleFly.y, purpleFly.size);
     pop();
 }
 
 /*resets the fly*/
 function resetFly() {
     if (gamemode === "oracle") {
-        fly.x = 0;
-        fly.y = random(0, 300);
+        goldenFly.x = 0;
+        goldenFly.y = random(0, 300);
+
+        purpleFly.x = 0;
+        purpleFly.y = random(100, 300);
+
     } else if (gamemode === "fortune") {
         fly.x = random(300, 0); // anywhere across the screen
         fly.y = 0; // start at the top
@@ -256,32 +262,30 @@ function drawFrog() {
 /**
  * Handles the tongue overlapping the fly
  */
-function checkTongueFlyOverlap() {
+function checkOracleTongue() {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+    const dGold = dist(frog.tongue.x, frog.tongue.y, goldenFly.x, goldenFly.y);
+    const dPurple = dist(frog.tongue.x, frog.tongue.y, purpleFly.x, purpleFly.y);
+
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+    const eatenGold = dGold < frog.tongue.size / 2 + goldenFly.size / 2;
+    const eatenPurple = dPurple < frog.tongue.size / 2 + purpleFly.size / 2;
 
-    if (eaten) {
-        frog.tongue.state = "inbound"; // retract tongue
-        resetFly();
 
-        // Increase points depending on mode
-        if (gamemode === "oracle") {
-            wisdomPoints++;
-            // Check if max points reached → end game
-            if (wisdomPoints >= maxPoints) {
-                gamemode = "end";
-                endMessage = "Wisdom Becomes You!";
-            }
-        } else if (gamemode === "fortune") {
-            fortunePoints++;
-            // Check if max points reached → end game
-            if (fortunePoints >= maxPoints) {
-                gamemode = "end";
-                endMessage = "Fortune Favours You!";
-            }
+    if (eatenGold) {
+        wisdomPoints++;
+        resetGoldenFly();
+        frog.tongue.state = "inbound";
+        if (wisdomPoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "Wisdom Becomes You!";
         }
+    }
+
+    if (eatenPurple) {
+        gamemode = "end";
+        endMessage = "Destiny Failed!";
+        frog.tongue.state = "inbound";
     }
 }
 
