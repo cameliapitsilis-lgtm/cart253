@@ -362,8 +362,6 @@ function checkOracleTongue() {
 
 //FORTUNE MODE TONGUE//
 function checkFortuneTongue() {
-
-    //first coin
     const d = dist(frog.tongue.x, frog.tongue.y, coinFly.x, coinFly.y);
     const eaten = d < (frog.tongue.size / 2 + coinFly.size / 2);
 
@@ -372,30 +370,6 @@ function checkFortuneTongue() {
         resetCoinFly();
         frog.tongue.state = "inbound";
 
-        if (fortunePoints >= maxPoints) {
-            gamemode = "end";
-            endMessage = "Fortune Favours You!";
-        }
-    }
-
-    // second coin
-    d = dist(frog.tongue.x, frog.tongue.y, coinFly2.x, coinFly2.y);
-    if (d < frog.tongue.size / 2 + coinFly2.size / 2 && frog.tongue.state === "outbound") {
-        fortunePoints++;
-        resetCoinFly(coinFly2);
-        frog.tongue.state = "inbound";
-        if (fortunePoints >= maxPoints) {
-            gamemode = "end";
-            endMessage = "Fortune Favours You!";
-        }
-    }
-
-    // Third coin
-    d = dist(frog.tongue.x, frog.tongue.y, coinFly3.x, coinFly3.y);
-    if (d < frog.tongue.size / 2 + coinFly3.size / 2 && frog.tongue.state === "outbound") {
-        fortunePoints++;
-        resetCoinFly(coinFly3);
-        frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
             endMessage = "Fortune Favours You!";
