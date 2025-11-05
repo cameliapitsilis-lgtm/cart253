@@ -164,10 +164,15 @@ function drawFly() {
     pop();
 }
 
-/*esets the fly to the left with a random y*/
+/*resets the fly*/
 function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
+    if (gamemode === "oracle") {
+        fly.x = 0;
+        fly.y = random(0, 300);
+    } else if (gamemode === "fortune") {
+        fly.x = random(300, 0); // anywhere across the screen
+        fly.y = 0; // start at the top
+    }
 }
 
 //FROG-------------------------------------->
