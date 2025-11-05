@@ -111,10 +111,12 @@ function drawStartScreen() {
 //END SCREEN COMPONENTS
 function drawEndScreen() {
     background("#000000ff");
-    textAlign(CENTER);
+    textAlign(CENTER, CENTER);
     textSize(48);
     fill("#ffffffff");
     text(endMessage, width / 2, height / 2);
+    textSize(24);
+    text("Press H to return home", width / 2, height / 2 + 60);
 }
 
 //SCORING SYSTEM COMPONENTS
@@ -142,6 +144,14 @@ function keyPressed() {
             gamemode = "fortune";
             resetFly();
         }
+    }
+}
+// RETURN TO HOME PAGE USING KEYPRESSED
+function keyPressed() {
+    if (key === 'H' || key === 'h') {
+        gamemode = "start";
+        wisdomPoints = 0;
+        fortunePoints = 0;
     }
 }
 
