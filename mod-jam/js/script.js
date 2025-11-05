@@ -110,15 +110,15 @@ function drawStartScreen() {
 //SCORING SYSTEM COMPONENTS
 function drawScore() {
     fill(0);
-    textSize(24);
+    textSize(14);
     textAlign(LEFT, TOP);
     if (gamemode === "oracle") {
 
         // text("what is written:" + variable, x,y))
 
-        text("Wisdom Points: " + wisdomPoints, 10, 10);
+        text("Wisdom Points: " + wisdomPoints, 30, 30);
     } else if (gamemode === "fortune") {
-        text("Fortune Points: " + fortunePoints, 10, 10);
+        text("Fortune Points: " + fortunePoints, 30, 30);
     }
 }
 
@@ -235,12 +235,21 @@ function checkTongueFlyOverlap() {
     const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+
     if (eaten) {
-        // Reset the fly
-        resetFly();
+
         // Bring back the tongue
         frog.tongue.state = "inbound";
+
+        if (gamemode === "oracle") {
+            wisdomPoints++;
+        }
+    } else if (gamemode === "fortune") {
+        fortunePoints++;
     }
+
+    // Reset the fly
+    resetFly();
 }
 
 /**
