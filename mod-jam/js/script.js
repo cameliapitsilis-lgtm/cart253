@@ -29,7 +29,7 @@
 "use strict";
 
 // Game Home Page with Title and Instructions
-let gamemode = "start"; // start is oracle mode, end is fortune mode
+let gamemode = "start";
 
 // Our frog
 const frog = {
@@ -90,6 +90,8 @@ function draw() {
     }
 }
 
+// GAME HOME PAGE COMPONENTS
+
 function drawStartScreen() {
     fill(0);
     textAlign(CENTER);
@@ -99,6 +101,19 @@ function drawStartScreen() {
     text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, 250);
 }
 
+// ACTIVATION OF DIFFERENT GAME MODES USING KEYPRESSED
+
+function keyPressed() {
+    if (gamemode === "start") {
+        if (key === 'O' || key === 'o') {
+            gamemode = "oracle";
+            resetFly();
+        } else if (key === 'F' || key === 'f') {
+            gamemode = "fortune";
+            resetFly();
+        }
+    }
+}
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
