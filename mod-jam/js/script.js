@@ -347,7 +347,7 @@ function checkOracleTongue() {
 
     if (eatenGold) {
         wisdomPoints++;
-        resetFly();
+        resetGoldenFly();
         frog.tongue.state = "inbound";
         if (wisdomPoints >= maxPoints) {
             gamemode = "end";
@@ -396,7 +396,7 @@ function checkFortuneTongue() {
         let timeSinceLast = now - lastCoinCatchTime;
         if (timeSinceLast < 2000) {
             fortunePoints = max(0, fortunePoints - 1);
-            greedMessage = "Too Greedy!";
+            greedMessage = "Too Greedy! -1pts!";
             greedMessageTimer = 60;
         } else {
             fortunePoints++;
@@ -418,7 +418,7 @@ function checkFortuneTongue() {
         let timeSinceLast = now - lastCoinCatchTime;
         if (timeSinceLast < 2000) {
             fortunePoints = max(0, fortunePoints - 1);
-            greedMessage = "Too Greedy!";
+            greedMessage = "Too Greedy! -1pts";
             greedMessageTimer = 60;
         } else {
             fortunePoints++;
