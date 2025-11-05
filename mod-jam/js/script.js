@@ -110,14 +110,16 @@ function drawStartScreen() {
 function drawScore() {
     fill(0);
     textSize(24);
+    textAlign(left, top)
     if (gamemode === "oracle") {
+
         // text("what is written:" + variable, x,y))
-        text("Wisdom Points: " + wisdomPoints, 10, 30);
+
+        text("Wisdom Points: " + wisdomPoints, 10, 10);
     } else if (gamemode === "fortune") {
-        text("Fortune Points: " + fortunePoints, 10, 30);
+        text("Fortune Points: " + fortunePoints, 10, 10);
     }
 }
-
 
 // ACTIVATION OF DIFFERENT GAME MODES USING KEYPRESSED
 function keyPressed() {
