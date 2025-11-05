@@ -184,7 +184,7 @@ function moveOracleFly() {
     }
 }
 //FORTUNE MODE
-function moveCoin() {
+function moveCoinFly() {
     coinFly.y += coinFly.speed;
     if (coinFly.y > height) resetCoinFly();
 }
@@ -201,12 +201,12 @@ function drawOracleFly() {
     pop();
 }
 
-//DRAWING ORACLE MODE FLYING OBJECTS//
+//DRAWING FORTUNE MODE FLYING OBJECTS//
 function drawCoinFly() {
     push();
     noStroke();
     fill("#FFD700");
-    ellipse(coin.x, coin.y, coin.size);
+    ellipse(coinFly.x, coinFly.y, coinFly.size);
     pop();
 }
 
@@ -233,9 +233,9 @@ function resetPurpleFly() {
 
 //FORTUNE MODE RESET//
 function resetCoinFly() {
-    coin.x = random(20, width - 20);
-    coin.y = 0;
-    coin.speed = random(3, 6);
+    coinFly.x = random(20, width - 20);
+    coinFly.y = 0;
+    coinFly.speed = random(3, 6);
 }
 
 
@@ -334,8 +334,8 @@ function checkOracleTongue() {
 
 //FORTUNE MODE TONGUE//
 function checkFortuneTongue() {
-    const d = dist(frog.tongue.x, frog.tongue.y, coin.x, coin.y);
-    const eaten = d < (frog.tongue.size / 2 + coin.size / 2);
+    const d = dist(frog.tongue.x, frog.tongue.y, coinFly.x, coinFly.y);
+    const eaten = d < (frog.tongue.size / 2 + coinFly.size / 2);
 
     if (eaten && frog.tongue.state === "outbound") {
         fortunePoints++;
