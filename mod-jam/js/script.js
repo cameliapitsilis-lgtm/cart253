@@ -37,6 +37,9 @@ let fortunePoints = 0;
 let endMessage = "";
 //Game Ends when you reach 10pts
 const maxPoints = 1;
+// Adding Greed Penalty to Fortune Mode//
+// Every time a coin is eaten, it checks how much time passed since the last coin.
+let lastCoinCatchTime = 0;
 
 // Our frog
 const frog = {
@@ -63,6 +66,8 @@ const purpleFly = { x: 10, y: 10, size: 20, speed: 5 };
 
 //FORTUNE MODE FLYING OBJECT
 const coinFly = { x: 0, y: 0, size: 20, speed: 3 };
+const coinFly2 = { x: 0, y: 0, size: 20, speed: 4 };
+const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 
 //SETUP -------------------------------//
 /* Creates the canvas and initializes the fly */
@@ -185,8 +190,18 @@ function moveOracleFly() {
 }
 //FORTUNE MODE
 function moveCoinFly() {
+
+    // move first coin
     coinFly.y += coinFly.speed;
-    if (coinFly.y > height) resetCoinFly();
+    if (coinFly.y > height) resetCoinFly(coinFly);
+
+    // move second coin
+    coinFly2.y += coinFly2.speed;
+    if (coinFly2.y > height) resetCoinFly(coinFly2);
+
+    // move third coin
+    coinFly3.y += coinFly3.speed;
+    if (coinFly3.y > height) resetCoinFly(coinFly3);
 }
 
 
@@ -207,6 +222,8 @@ function drawCoinFly() {
     noStroke();
     fill("#FFD700");
     ellipse(coinFly.x, coinFly.y, coinFly.size);
+    ellipse(coinFly2.x, coinFly2.y, coinFly2.size);
+    ellipse(coinFly3.x, coinFly3.y, coinFly3.size);
     pop();
 }
 
@@ -233,9 +250,20 @@ function resetPurpleFly() {
 
 //FORTUNE MODE RESET//
 function resetCoinFly() {
+    // first coin
     coinFly.x = random(20, width - 20);
     coinFly.y = 0;
     coinFly.speed = random(3, 6);
+
+    // second coin
+    coinFly2.x = random(20, width - 20);
+    coinFly2.y = 0;
+    coinFly2.speed = random(3, 6);
+
+    // third coin
+    coinFly3.x = random(20, width - 20);
+    coinFly3.y = 0;
+    coinFly3.speed = random(3, 6);
 }
 
 
@@ -334,6 +362,8 @@ function checkOracleTongue() {
 
 //FORTUNE MODE TONGUE//
 function checkFortuneTongue() {
+
+    //first coin
     const d = dist(frog.tongue.x, frog.tongue.y, coinFly.x, coinFly.y);
     const eaten = d < (frog.tongue.size / 2 + coinFly.size / 2);
 
@@ -342,6 +372,30 @@ function checkFortuneTongue() {
         resetCoinFly();
         frog.tongue.state = "inbound";
 
+        if (fortunePoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "Fortune Favours You!";
+        }
+    }
+
+    // second coin
+    d = dist(frog.tongue.x, frog.tongue.y, coinFly2.x, coinFly2.y);
+    if (d < frog.tongue.size / 2 + coinFly2.size / 2 && frog.tongue.state === "outbound") {
+        fortunePoints++;
+        resetCoinFly(coinFly2);
+        frog.tongue.state = "inbound";
+        if (fortunePoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "Fortune Favours You!";
+        }
+    }
+
+    // Third coin
+    d = dist(frog.tongue.x, frog.tongue.y, coinFly3.x, coinFly3.y);
+    if (d < frog.tongue.size / 2 + coinFly3.size / 2 && frog.tongue.state === "outbound") {
+        fortunePoints++;
+        resetCoinFly(coinFly3);
+        frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
             endMessage = "Fortune Favours You!";
