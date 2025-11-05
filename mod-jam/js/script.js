@@ -30,12 +30,11 @@
 
 // Game Home Page with Title and Instructions
 let gamemode = "start";
-
 // Adding Scoring System
 let wisdomPoints = 0;
 let fortunePoints = 0;
 //Game Ends when you reach 10pts
-const maxPoints = 10;
+const maxPoints = 1;
 
 // Our frog
 const frog = {
@@ -105,6 +104,18 @@ function drawStartScreen() {
     text("Frog of Destiny", width / 2, 150);
     textSize(24);
     text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, 250);
+}
+
+//GAMEOVER SCREEN COMPONENTS
+function drawEndScreen() {
+    textAlign(CENTER);
+    textSize(48);
+    fill(0);
+    if (gamemode === "end" && wisdomPoints >= maxPoints) {
+        text("Wisdom Ascended!", width / 2, height / 2);
+    } else if (gamemode === "end" && fortunePoints >= maxPoints) {
+        text("Fortune Favours You!", width / 2, height / 2);
+    }
 }
 
 //SCORING SYSTEM COMPONENTS
