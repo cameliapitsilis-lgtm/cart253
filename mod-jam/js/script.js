@@ -57,14 +57,9 @@ const frog = {
     }
 };
 
-// Our fly
-// Has a position, size, and speed of horizontal movement
-const fly = {
-    x: 0,
-    y: 200, // Will be random
-    size: 10,
-    speed: 3
-};
+// FLYING ORBS
+const goldenFly = { x: 0, y: 0, size: 20, speed: 3 };
+const purpleFly = { x: 0, y: 0, size: 20, speed: 3 };
 
 //SETUP -------------------------------//
 /* Creates the canvas and initializes the fly */
@@ -118,7 +113,7 @@ function drawEndScreen() {
     text(endMessage, width / 2, height / 2);
     textSize(24);
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
-    text("Press H to return home", width / 2, height / 2 + 60);
+    text("Press 'H' to return home", width / 2, height / 2 + 60);
 }
 
 //SCORING SYSTEM COMPONENTS
@@ -156,7 +151,6 @@ function keyPressed() {
         resetFly();
     }
 }
-
 
 //FLY-------------------------------------->
 /**
