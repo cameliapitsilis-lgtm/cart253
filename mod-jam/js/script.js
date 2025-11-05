@@ -135,23 +135,27 @@ function keyPressed() {
     }
 }
 
-//FLY
+//FLY-------------------------------------->
 /**
- * Moves the fly according to its speed
- * Resets the fly if it gets all the way to the right
+ * Oracle Mode: Fly moves from left to right
+ * Fortune Mode: Fly moves from top to bottom
+ * Resets the fly if it gets all the way to the right or to the bottom
  */
 function moveFly() {
-    // Move the fly
-    fly.x += fly.speed;
-    // Handle the fly going off the canvas
-    if (fly.x > width) {
-        resetFly();
+    // Oracle Mode
+    if (gamemode === "oracle") {
+        fly.x += fly.speed;
+        if (fly.x > width) {
+            resetFly();
+        }
+    }
+    else if (gamemode === "fortune") {
+        fly.y += fly.speed;
+        if (fly.y > height) { resetFly(); }
     }
 }
 
-/**
- * Draws the fly as a black circle
- */
+/*Draws the fly as a black circle*/
 function drawFly() {
     push();
     noStroke();
@@ -160,15 +164,13 @@ function drawFly() {
     pop();
 }
 
-/**
- * Resets the fly to the left with a random y
- */
+/*esets the fly to the left with a random y*/
 function resetFly() {
     fly.x = 0;
     fly.y = random(0, 300);
 }
 
-//FROG
+//FROG-------------------------------------->
 /**
  * Moves the frog to the mouse position on x
  */
@@ -204,9 +206,7 @@ function moveTongue() {
     }
 }
 
-/**
- * Displays the tongue (tip and line connection) and the frog (body)
- */
+/* Displays the tongue (tip and line connection) and the frog (body) */
 function drawFrog() {
     // Draw the tongue tip
     push();
@@ -230,6 +230,7 @@ function drawFrog() {
     pop();
 }
 
+//GAME PLAYING COMPONENTS - SCORING SYSTEM AND TONGUE MOVEMENT
 /**
  * Handles the tongue overlapping the fly
  */
