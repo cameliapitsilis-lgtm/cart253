@@ -101,11 +101,12 @@ function draw() {
 // GAME HOME PAGE COMPONENTS
 function drawStartScreen() {
     fill(0);
-    textAlign(CENTER);
+    textAlign(CENTER, CENTER);
     textSize(48);
-    text("Frog of Destiny", width / 2, 150);
+    text("Frog of Destiny", width / 2, height / 2);
     textSize(24);
-    text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, 250);
+    // text ("message", width/2 (horizontal center, height/2 (vertical center)))
+    text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, height / 2 + 120);
 }
 
 //END SCREEN COMPONENTS
@@ -116,6 +117,7 @@ function drawEndScreen() {
     fill("#ffffffff");
     text(endMessage, width / 2, height / 2);
     textSize(24);
+    // text ("message", width/2 (horizontal center, height/2 (vertical center)))
     text("Press H to return home", width / 2, height / 2 + 60);
 }
 
@@ -134,7 +136,8 @@ function drawScore() {
     }
 }
 
-// ACTIVATION OF DIFFERENT GAME MODES USING KEYPRESSED
+// ACTIVATION USING KEYPRESSED
+// CHOOSE YOUR GAME MODE
 function keyPressed() {
     if (gamemode === "start") {
         if (key === 'O' || key === 'o') {
@@ -145,15 +148,15 @@ function keyPressed() {
             resetFly();
         }
     }
-}
-// RETURN TO HOME PAGE USING KEYPRESSED
-function keyPressed() {
+    // RETURN TO HOME PAGE USING KEYPRESSED
     if (key === 'H' || key === 'h') {
         gamemode = "start";
         wisdomPoints = 0;
         fortunePoints = 0;
+        resetFly();
     }
 }
+
 
 //FLY-------------------------------------->
 /**
