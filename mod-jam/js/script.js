@@ -1,31 +1,35 @@
 /**
  * Frog of Destiny
  * Camélia Pitsilis
- * 
-* Frog of Destiny is a myth-inspired, frog tongue catching game where the player controls a
-mystical frog that seeks either wisdom or fortune.
-* There are two modes: Greek Oracle Frog and Chinese Fortune Frog.
- * 
- * In Ancient Greek mythology, frogs were often associated with prophecy. So in the game Greek Oracle Frog Game,
- * there will be two types of flying prophetical orbs: Golden Truthful Prophecies and Purple False Prophecies.
- * The Frog will have to eat the Golden Truthful Prophecies to gain as many Wisdom Points before the time ends.
- * If the Frog eats the Purple False Prophecies, the frog dies.
- * 
- * In Chinese Mythology, Chan Chu (蟾蜍) is the Three-Legged Mythical Frog that brings fortune.
- * So in the Chinese Fortune Frog Game, the frog will have to catch as many Golden Coins as possible
- * before the time runs out. However, if the frog catches the Golden Coins too quickly, he will lose
- * Fortune Points because of greed.
- * 
- * Instructions:
- * - Move the frog with your mouse
- * - Click to launch the tongue
- * - Catch object
- * 
+ 
+ * Frog of Destiny is a myth-inspired, frog tongue catching game where the player controls a
+   mystical frog that seeks either wisdom or fortune.
+
+ There are two modes: Greek Oracle Frog and Chinese Fortune Frog.
+
+ In Ancient Greek mythology, frogs were often associated with prophecy. So in the game Greek Oracle Frog Game,
+ there will be two types of flying prophetical orbs: Golden Truthful Prophecies and Purple False Prophecies.
+ The Frog will have to eat the Golden Truthful Prophecies to gain as many Wisdom Points before the time ends.
+ If the Frog eats the Purple False Prophecies, the frog dies.
+ 
+ In Chinese Mythology, Chan Chu (蟾蜍) is the Three-Legged Mythical Frog that brings fortune.
+ So in the Chinese Fortune Frog Game, the frog will have to catch as many Golden Coins as possible
+ before the time runs out. However, if the frog catches the Golden Coins too quickly, he will lose
+ Fortune Points because of greed.
+ 
+ Instructions:
+ - Move the frog with your mouse
+ - Click to launch the tongue
+ - Catch object
+ 
  * Made with p5
  * https://p5js.org/
  */
 
 "use strict";
+
+// Game Home Page with Title and Instructions
+let gamemode = "start"; // start is oracle mode, end is fortune mode
 
 // Our frog
 const frog = {
