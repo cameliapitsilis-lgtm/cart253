@@ -79,16 +79,20 @@ function draw() {
 
     if (gamemode === "start") {
         drawStartScreen();
-    } else if (gamemode === "oracle" || gamemode === "fortune") {
+    } else if (gamemode === "oracle") {
         // Game Components are here
-        moveFly();
-        drawFly();
+        moveOracleFly();
+        drawOracleFly();
         moveFrog();
         moveTongue();
         drawFrog();
-        checkTongueFlyOverlap();
+        checkOracleTongue();
         drawScore();
-    } else if (gamemode === "end") {
+    }
+    else if (gamemode === "fortune") {
+
+    }
+    else if (gamemode === "end") {
         drawEndScreen();
     }
 }
@@ -122,9 +126,7 @@ function drawScore() {
     textSize(14);
     textAlign(LEFT, TOP);
     if (gamemode === "oracle") {
-
         // text("what is written:" + variable, x,y))
-
         text("Wisdom Points: " + wisdomPoints, 30, 30);
     } else if (gamemode === "fortune") {
         text("Fortune Points: " + fortunePoints, 30, 30);
@@ -152,17 +154,21 @@ function keyPressed() {
     }
 }
 
-//FLY-------------------------------------->
+//FLYING OBJECTS-------------------------------------->
 /**
  * Oracle Mode: Fly moves from left to right
  * Fortune Mode: Fly moves from top to bottom
  * Resets the fly if it gets all the way to the right or to the bottom
  */
-function moveFly() {
+function moveOracleFly() {
     // Oracle Mode
     if (gamemode === "oracle") {
-        fly.x += fly.speed;
-        if (fly.x > width) {
+        goldenFly.x += goldenFly.speed;
+        if (goldenFly.x > width) {
+            resetFly();
+        }
+        purpleFly.x += purpleFly.speed;
+        if (purpleFly.x > width) {
             resetFly();
         }
     }
@@ -274,7 +280,7 @@ function checkOracleTongue() {
 
     if (eatenGold) {
         wisdomPoints++;
-        resetGoldenFly();
+        resetFly();
         frog.tongue.state = "inbound";
         if (wisdomPoints >= maxPoints) {
             gamemode = "end";
