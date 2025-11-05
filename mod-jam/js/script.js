@@ -91,6 +91,7 @@ function draw() {
         moveTongue();
         drawFrog();
         checkTongueFlyOverlap();
+        drawScore();
     } else if (gamemode === "end") {
         drawEndScreen();
     }
@@ -110,7 +111,7 @@ function drawStartScreen() {
 function drawScore() {
     fill(0);
     textSize(24);
-    textAlign(left, top)
+    textAlign(LEFT, TOP);
     if (gamemode === "oracle") {
 
         // text("what is written:" + variable, x,y))
