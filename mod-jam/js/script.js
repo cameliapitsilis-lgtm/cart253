@@ -62,7 +62,7 @@ const goldenFly = { x: 0, y: 0, size: 20, speed: 3 };
 const purpleFly = { x: 10, y: 10, size: 20, speed: 5 };
 
 //FORTUNE MODE FLYING OBJECT
-const coin = { x: 0, y: 0, size: 20, speed: 3 };
+const coinFly = { x: 0, y: 0, size: 20, speed: 3 };
 
 //SETUP -------------------------------//
 /* Creates the canvas and initializes the fly */
@@ -93,7 +93,13 @@ function draw() {
         drawScore();
     }
     else if (gamemode === "fortune") {
-
+        moveCoinFly();
+        drawCoinFly();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkFortuneTongue();
+        drawScore();
     }
     else if (gamemode === "end") {
         drawEndScreen();
@@ -148,7 +154,7 @@ function keyPressed() {
             resetFly();
         }
     }
-    // RETURN TO HOME PAGE USING KEYPRESSED
+    // RETURN TO START SCREEN USING KEYPRESSED
     if (key === 'H' || key === 'h') {
         gamemode = "start";
         wisdomPoints = 0;
@@ -163,6 +169,9 @@ function keyPressed() {
  * Fortune Mode: Fly moves from top to bottom
  * Resets the fly if it gets all the way to the right or to the bottom
  */
+
+//FLYING OBJECT MOVEMENT AND POSITION//
+//ORACLE MODE//
 function moveOracleFly() {
     // Oracle Mode
     if (gamemode === "oracle") {
@@ -173,13 +182,15 @@ function moveOracleFly() {
         if (goldenFly.x > width) resetGoldenFly();
         if (purpleFly.x > width) resetPurpleFly();
     }
-    else if (gamemode === "fortune") {
-        fly.y += fly.speed;
-        if (fly.y > height) { resetFly(); }
-    }
+}
+//FORTUNE MODE
+function moveCoin() {
+    coinFly.y += coinFly.speed;
+    if (coinFly.y > height) resetCoinFly();
 }
 
-/*DRAW ORACLE MODE FLYING OBJECT*/
+
+//DRAWING ORACLE MODE FLYING OBJECTS//
 function drawOracleFly() {
     push();
     noStroke();
@@ -190,28 +201,44 @@ function drawOracleFly() {
     pop();
 }
 
-/*resets the fly*/
+//DRAWING ORACLE MODE FLYING OBJECTS//
+function drawCoinFly() {
+    push();
+    noStroke();
+    fill("#FFD700");
+    ellipse(coin.x, coin.y, coin.size);
+    pop();
+}
+
+//RESET FLYING OBJECT POSITION//
 function resetFly() {
     if (gamemode === "oracle") {
         resetGoldenFly();
         resetPurpleFly();
 
     } else if (gamemode === "fortune") {
-        fly.x = random(300, 0); // anywhere across the screen
-        fly.y = 0; // start at the top
+        resetCoinFly();
     }
 }
 
+//ORACLE MODE RESET//
 function resetGoldenFly() {
     goldenFly.x = 0;
     goldenFly.y = random(0, 300);
 }
-
 function resetPurpleFly() {
-
     purpleFly.x = 0;
     purpleFly.y = random(100, 300);
 }
+
+//FORTUNE MODE RESET//
+function resetCoinFly() {
+    coin.x = random(20, width - 20);
+    coin.y = 0;
+    coin.speed = random(3, 6);
+}
+
+
 //FROG-------------------------------------->
 /**
  * Moves the frog to the mouse position on x
@@ -276,6 +303,8 @@ function drawFrog() {
 /**
  * Handles the tongue overlapping the fly
  */
+
+//ORACLE MODE TONGUE//
 function checkOracleTongue() {
     // Get distance from tongue to fly
     const dGold = dist(frog.tongue.x, frog.tongue.y, goldenFly.x, goldenFly.y);
@@ -300,6 +329,23 @@ function checkOracleTongue() {
         gamemode = "end";
         endMessage = "Destiny Failed!";
         frog.tongue.state = "inbound";
+    }
+}
+
+//FORTUNE MODE TONGUE//
+function checkFortuneTongue() {
+    const d = dist(frog.tongue.x, frog.tongue.y, coin.x, coin.y);
+    const eaten = d < (frog.tongue.size / 2 + coin.size / 2);
+
+    if (eaten && frog.tongue.state === "outbound") {
+        fortunePoints++;
+        resetCoinFly();
+        frog.tongue.state = "inbound";
+
+        if (fortunePoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "Fortune Favours You!";
+        }
     }
 }
 
