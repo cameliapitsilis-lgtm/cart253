@@ -43,6 +43,11 @@ let lastCoinCatchTime = 0;
 let greedMessage = "";
 let greedMessageTimer = 0;
 
+//GAME VISUAL DESIGN
+let startBg;
+let oracleBg;
+let fortuneBg;
+
 // Our frog
 const frog = {
     // The frog's body has a position and size
