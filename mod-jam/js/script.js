@@ -115,15 +115,14 @@ function draw() {
 
     if (gamemode === "start") {
         drawStartScreen();
+        //Oracle Mode
     } else if (gamemode === "oracle") {
-
         // Background 
         if (oracleBg) {
             image(oracleBg, 0, 0, width, height);
         } else {
             background("#26005cff");
         }
-
         // Game Components Here
         moveOracleFly();
         drawOracleFly();
@@ -133,6 +132,7 @@ function draw() {
         checkOracleTongue();
         drawScore();
     }
+    //Fortune Mode
     else if (gamemode === "fortune") {
         // Background
         if (fortuneBg) {
@@ -165,10 +165,18 @@ function drawStartScreen() {
     textAlign(CENTER, CENTER);
     textSize(30);
     text("FROG OF DESTINY", width / 2, height / 2);
+    //Different Options
+    fill("#ff00eaff");
+    rect(width / 2 - 100, height / 2 + 60, 200, 40); // Oracle button
+    fill("#eeff00ff");
+    rect(width / 2 - 100, height / 2 + 110, 200, 40); // Fortune button
+    fill("#22ff00");
+    rect(width / 2 - 100, height / 2 + 160, 200, 40); // Instructions button
     textSize(14);
-    // text ("message", width/2 (horizontal center, height/2 (vertical center)))
-    fill("#22ff00ff");
-    text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, height / 2 + 120);
+    fill("#280085ff");
+    text("ORACLE", width / 2, height / 2 + 80);
+    text("FORTUNE", width / 2, height / 2 + 130);
+    text("INSTRUCTIONS", width / 2, height / 2 + 180);
 }
 
 //END SCREEN COMPONENTS
@@ -481,7 +489,25 @@ function checkFortuneTongue() {
  * Launch the tongue on click (if it's not launched yet)
  */
 function mousePressed() {
-    if (frog.tongue.state === "idle") {
-        frog.tongue.state = "outbound";
+    // Game Mode Selection
+    if (gamemode === "start") {
+        if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100) {
+            if (mouseY > height / 2 + 80 && mouseY < height / 2 + 120) gamemode = "oracle";
+            else if (mouseY > height / 2 + 130 && mouseY < height / 2 + 170) gamemode = "fortune";
+            else if (mouseY > height / 2 + 180 && mouseY < height / 2 + 220) gamemode = "instructions";
+            resetFly();
+        }
+        // Frog Tongue Control
+        else if (frog.tongue.state === "idle") {
+            frog.tongue.state = "outbound";
+        }
     }
 }
+
+
+fill("#ff00eaff");
+rect(width / 2 - 100, height / 2 + 60, 200, 40); // Oracle button
+fill("#eeff00ff");
+rect(width / 2 - 100, height / 2 + 110, 200, 40); // Fortune button
+fill("#22ff00");
+rect(width / 2 - 100, height / 2 + 160, 200, 40); // Instructions button
