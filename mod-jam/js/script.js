@@ -5,7 +5,7 @@
  * Frog of Destiny is a myth-inspired, frog tongue catching game where the player controls a
    mystical frog that seeks either wisdom or fortune.
 
- There are two modes: Greek Oracle Frog and Chinese Fortune Frog.
+ There are two modes: Greek Oracle and Chinese Fortune.
 
  In Ancient Greek mythology, frogs were often associated with prophecy. So in the game Greek Oracle Frog Game,
  there will be two types of flying prophetical orbs: Golden Truthful Prophecies and Purple False Prophecies.
@@ -81,7 +81,7 @@ const coinFly = { x: 0, y: 0, size: 20, speed: 3 };
 const coinFly2 = { x: 0, y: 0, size: 20, speed: 4 };
 const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 
-//SETUP -------------------------------//
+//SETUP -------------------------------------------------------------------------------------------------------------//
 /* Creates the canvas and initializes the fly */
 // Game Visual Design Images
 function preload() {
@@ -109,7 +109,7 @@ function setup() {
     resetFly();
 }
 
-//MAIN DRAW FUNCTION ------------------//
+//MAIN DRAW FUNCTION -----------------------------------------------------------------------------------------------//
 function draw() {
     background("#26005cff");
 
@@ -166,7 +166,7 @@ function draw() {
     }
 }
 
-// DRAWING GAME START SCREEN COMPONENTS
+// DRAWING GAME START SCREEN COMPONENTS-----------------------------------------------------------------------------//
 function drawStartScreen() {
     if (startBg) {
         image(startBg, 0, 0, width, height); // draw background
@@ -192,7 +192,8 @@ function drawStartScreen() {
     text("CHINESE FORTUNE", width / 2, height / 2 + 130);
     text("INSTRUCTIONS", width / 2, height / 2 + 180);
 }
-//DRAWING END SCREEN COMPONENTS
+
+//DRAWING END SCREEN COMPONENTS-------------------------------------------------------------------------------------//
 function drawEndScreen() {
     background("#000000ff");
     textAlign(CENTER, CENTER);
@@ -204,7 +205,7 @@ function drawEndScreen() {
     text("Press 'esc' to return to start screen", width / 2, height / 2 + 60);
 }
 
-//DRAWING SCORING SYSTEM COMPONENTS
+//DRAWING SCORING SYSTEM COMPONENTS---------------------------------------------------------------------------------//
 function drawScore() {
     let barWidth = 150;
     let barHeight = 20;
@@ -246,7 +247,7 @@ function drawScore() {
     }
 }
 
-// ACTIVATION USING KEYPRESSED------------------------------------------------------------->
+//ACTIVATION USING KEYPRESSED---------------------------------------------------------------------------------------//
 // CHOOSE YOUR GAME MODE
 function keyPressed() {
     // RETURN TO START SCREEN USING KEYPRESSED
@@ -258,7 +259,7 @@ function keyPressed() {
     }
 }
 
-//FLYING OBJECTS-------------------------------------->
+//FLYING OBJECTS----------------------------------------------------------------------------------------------------//
 /**
  * Oracle Mode: Fly moves from left to right
  * Fortune Mode: Fly moves from top to bottom
@@ -278,7 +279,7 @@ function moveOracleFly() {
         if (purpleFly.x > width) resetPurpleFly();
     }
 }
-//FORTUNE MODE
+//FORTUNE MODE FLY//
 function moveCoinFly() {
 
     // move first coin
@@ -294,8 +295,8 @@ function moveCoinFly() {
     if (coinFly3.y > height) resetCoinFly(coinFly3);
 }
 
-
-//DRAWING ORACLE MODE FLYING OBJECTS//
+//DRAWING FLYING OBJECTS//
+//ORACLE MODE//
 function drawOracleFly() {
     push();
     imageMode(CENTER);
@@ -304,7 +305,7 @@ function drawOracleFly() {
     pop();
 }
 
-//DRAWING FORTUNE MODE FLYING OBJECTS//
+//FORTUNE MODE//
 function drawCoinFly() {
     push();
     imageMode(CENTER);
@@ -344,8 +345,7 @@ function resetCoinFly(coin) {
     coin.speed = random(3, 6);
 }
 
-
-//FROG-------------------------------------->
+//FROG---------------------------------------------------------------------------------------------------------------//
 /**
  * Moves the frog to the mouse position on x
  */
@@ -404,11 +404,7 @@ function drawFrog() {
     pop();
 }
 
-//GAME PLAYING COMPONENTS - SCORING SYSTEM AND TONGUE MOVEMENT
-/**
- * Handles the tongue overlapping the fly
- */
-
+//SCORING SYSTEM AND TONGUE MOVEMENT--------------------------------------------------------------------------------//
 //ORACLE MODE TONGUE//
 function checkOracleTongue() {
     // Get distance from tongue to fly
@@ -509,6 +505,7 @@ function checkFortuneTongue() {
     }
 }
 
+//MOUSE ACTIVATION---------------------------------------------------------------------------------------------------//
 /**
  * Launch the tongue on click (if it's not launched yet)
  */
