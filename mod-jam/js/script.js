@@ -491,23 +491,26 @@ function checkFortuneTongue() {
 function mousePressed() {
     // Game Mode Selection
     if (gamemode === "start") {
-        if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100) {
-            if (mouseY > height / 2 + 80 && mouseY < height / 2 + 120) gamemode = "oracle";
-            else if (mouseY > height / 2 + 130 && mouseY < height / 2 + 170) gamemode = "fortune";
-            else if (mouseY > height / 2 + 180 && mouseY < height / 2 + 220) gamemode = "instructions";
+        // Oracle button
+        if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 &&
+            mouseY > height / 2 + 60 && mouseY < height / 2 + 100) {
+            gamemode = "oracle";
             resetFly();
         }
-        // Frog Tongue Control
-        else if (frog.tongue.state === "idle") {
-            frog.tongue.state = "outbound";
+        // Fortune button
+        else if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 &&
+            mouseY > height / 2 + 110 && mouseY < height / 2 + 150) {
+            gamemode = "fortune";
+            resetFly();
+        }
+        // Instructions button
+        else if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 &&
+            mouseY > height / 2 + 160 && mouseY < height / 2 + 200) {
+            gamemode = "instructions";
         }
     }
+    // Frog Tongue Control
+    else if (frog.tongue.state === "idle") {
+        frog.tongue.state = "outbound";
+    }
 }
-
-
-fill("#ff00eaff");
-rect(width / 2 - 100, height / 2 + 60, 200, 40); // Oracle button
-fill("#eeff00ff");
-rect(width / 2 - 100, height / 2 + 110, 200, 40); // Fortune button
-fill("#22ff00");
-rect(width / 2 - 100, height / 2 + 160, 200, 40); // Instructions button
