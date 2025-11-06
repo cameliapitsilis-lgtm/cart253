@@ -425,7 +425,7 @@ function checkOracleTongue() {
         frog.tongue.state = "inbound";
         if (wisdomPoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "WISDOM BECOMES YOU!";
+            endMessage = "PROPHECY ACHIEVED!";
         }
     }
 
