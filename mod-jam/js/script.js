@@ -186,9 +186,9 @@ function drawEndScreen() {
     textSize(30);
     fill("#ffffffff");
     text(endMessage, width / 2, height / 2);
-    textSize(14);
+    textSize(12);
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
-    text("Press 'H' to return home", width / 2, height / 2 + 60);
+    text("Press 'esc' to return to start screen", width / 2, height / 2 + 60);
 }
 
 //SCORING SYSTEM COMPONENTS
@@ -213,20 +213,11 @@ function drawScore() {
     }
 }
 
-// ACTIVATION USING KEYPRESSED
+// ACTIVATION USING KEYPRESSED------------------------------------------------------------->
 // CHOOSE YOUR GAME MODE
 function keyPressed() {
-    if (gamemode === "start") {
-        if (key === 'O' || key === 'o') {
-            gamemode = "oracle";
-            resetFly();
-        } else if (key === 'F' || key === 'f') {
-            gamemode = "fortune";
-            resetFly();
-        }
-    }
     // RETURN TO START SCREEN USING KEYPRESSED
-    if (key === 'H' || key === 'h') {
+    if (keyCode === ESCAPE) {
         gamemode = "start";
         wisdomPoints = 0;
         fortunePoints = 0;
@@ -402,13 +393,13 @@ function checkOracleTongue() {
         frog.tongue.state = "inbound";
         if (wisdomPoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "Wisdom Becomes You!";
+            endMessage = "WISDOM BECOMES YOU!";
         }
     }
 
     if (eatenPurple) {
         gamemode = "end";
-        endMessage = "Destiny Failed!";
+        endMessage = "DESTINY FAILED!";
         frog.tongue.state = "inbound";
     }
 }
@@ -425,7 +416,7 @@ function checkFortuneTongue() {
         if (timeSinceLast < 2000) {
             // too greedy!
             fortunePoints = max(0, fortunePoints - 1);
-            greedMessage = "Too Greedy! -1pts";
+            greedMessage = "TOO GREEDY! -1pts";
             greedMessageTimer = 60; // show ~1 second
         } else {
             fortunePoints++;
@@ -436,7 +427,7 @@ function checkFortuneTongue() {
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "Fortune Favours You!";
+            endMessage = "FORTUNE FAVOURS YOU!";
         }
     }
 
@@ -447,7 +438,7 @@ function checkFortuneTongue() {
         let timeSinceLast = now - lastCoinCatchTime;
         if (timeSinceLast < 2000) {
             fortunePoints = max(0, fortunePoints - 1);
-            greedMessage = "Too Greedy! -1pts!";
+            greedMessage = "TOO GREDDY! -1pts";
             greedMessageTimer = 60;
         } else {
             fortunePoints++;
@@ -458,7 +449,7 @@ function checkFortuneTongue() {
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "Fortune Favours You!";
+            endMessage = "FORTUNE FAVOURS YOU!";
         }
     }
 
@@ -469,7 +460,7 @@ function checkFortuneTongue() {
         let timeSinceLast = now - lastCoinCatchTime;
         if (timeSinceLast < 2000) {
             fortunePoints = max(0, fortunePoints - 1);
-            greedMessage = "Too Greedy! -1pts";
+            greedMessage = "TOO GREEDY! -1pts";
             greedMessageTimer = 60;
         } else {
             fortunePoints++;
@@ -480,7 +471,7 @@ function checkFortuneTongue() {
         frog.tongue.state = "inbound";
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "Fortune Favours You!";
+            endMessage = "FORTUNE FAVOURS YOU!";
         }
     }
 }
