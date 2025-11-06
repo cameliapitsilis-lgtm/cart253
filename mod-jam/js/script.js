@@ -149,12 +149,17 @@ function draw() {
         checkFortuneTongue();
         drawScore();
     }
+    //Instruction Mode
+    else if (gamemode === "instructions") {
+        drawInstructionsScreen();
+    }
+    // End Screen
     else if (gamemode === "end") {
         drawEndScreen();
     }
 }
 
-// GAME HOME PAGE COMPONENTS
+// DRAWING GAME START SCREEN COMPONENTS
 function drawStartScreen() {
     if (startBg) {
         image(startBg, 0, 0, width, height); // draw background
@@ -178,8 +183,27 @@ function drawStartScreen() {
     text("FORTUNE", width / 2, height / 2 + 130);
     text("INSTRUCTIONS", width / 2, height / 2 + 180);
 }
+//DRAWING INSTRUCTIONS MODE COMPONENTS
+function drawInstructionsScreen() {
+    //TITLE
+    fill("#fff");
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    text("INSTRUCTIONS", width / 2, height / 2 - 180);
 
-//END SCREEN COMPONENTS
+    //TEXT
+    //Oracle Mode
+    fill("#ff00eaff");
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    text("ORACLE MODE", width / 2, height / 2 - 120);
+    textSize(10);
+    text("In the Greek Oracle Frog mode, frogs are linked to\nprophecy and wisdom.You play as a magical frog tasked\nwith catching Golden Truthful Prophecies, which will grant\nyou WISDOM POINTS.But beware: not all prophecies are\nwhat they seem. Purple False Prophecies appear alongside the\ngolden ones, and consuming them will end your journey \ninstantly.Focus and discernment are your greatest allies\nas you navigate this world of oracles and omens,\nstriving to gather as much wisdom as possible.", width / 2, height / 2 - 50);
+
+
+}
+
+//DRAWING END SCREEN COMPONENTS
 function drawEndScreen() {
     background("#000000ff");
     textAlign(CENTER, CENTER);
@@ -191,7 +215,7 @@ function drawEndScreen() {
     text("Press 'esc' to return to start screen", width / 2, height / 2 + 60);
 }
 
-//SCORING SYSTEM COMPONENTS
+//DRAWING SCORING SYSTEM COMPONENTS
 function drawScore() {
     fill(0);
     textSize(14);
@@ -205,8 +229,8 @@ function drawScore() {
     //FORTUNE MODE GREED PENALTY MESSAGE
     // Show "Too Greedy!" message
     if (greedMessageTimer > 0) {
-        fill("#ff0000ff");
-        textSize(14);
+        fill("#ffffffff");
+        textSize(20);
         textAlign(CENTER, CENTER);
         text(greedMessage, width / 2, height / 2);
         greedMessageTimer--;
@@ -438,7 +462,7 @@ function checkFortuneTongue() {
         let timeSinceLast = now - lastCoinCatchTime;
         if (timeSinceLast < 2000) {
             fortunePoints = max(0, fortunePoints - 1);
-            greedMessage = "TOO GREDDY! -1pts";
+            greedMessage = "TOO GREEDY! -1pts";
             greedMessageTimer = 60;
         } else {
             fortunePoints++;
