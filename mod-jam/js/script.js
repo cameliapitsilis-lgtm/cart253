@@ -57,8 +57,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 520,
-        size: 150
+        y: 442,
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -72,8 +71,8 @@ const frog = {
 };
 
 // ORACLE MODE FLYING OBJECT
-const goldenFly = { x: 0, y: 0, size: 20, speed: 3 };
-const purpleFly = { x: 10, y: 10, size: 20, speed: 5 };
+const goldenFly = { x: 0, y: 0, size: 40, speed: 3 };
+const purpleFly = { x: 10, y: 10, size: 40, speed: 5 };
 
 //FORTUNE MODE FLYING OBJECT
 const coinFly = { x: 0, y: 0, size: 20, speed: 3 };
@@ -159,12 +158,13 @@ function drawStartScreen() {
     } else {
         background("#26005cff"); // fallback color
     }
-    fill(0);
+    fill("#ffffffff");
     textAlign(CENTER, CENTER);
     textSize(48);
     text("Frog of Destiny", width / 2, height / 2);
     textSize(24);
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
+    fill("#22ff00ff");
     text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, height / 2 + 120);
 }
 
@@ -263,22 +263,19 @@ function moveCoinFly() {
 //DRAWING ORACLE MODE FLYING OBJECTS//
 function drawOracleFly() {
     push();
-    noStroke();
-    fill("#FFD700"); // golden orb
-    ellipse(goldenFly.x, goldenFly.y, goldenFly.size);
-    fill("#800080"); // purple orb
-    ellipse(purpleFly.x, purpleFly.y, purpleFly.size);
+    imageMode(CENTER);
+    image(goldenFlyImg, goldenFly.x, goldenFly.y, goldenFly.size, goldenFly.size);
+    image(purpleFlyImg, purpleFly.x, purpleFly.y, purpleFly.size, purpleFly.size);
     pop();
 }
 
 //DRAWING FORTUNE MODE FLYING OBJECTS//
 function drawCoinFly() {
     push();
-    noStroke();
-    fill("#FFD700");
-    ellipse(coinFly.x, coinFly.y, coinFly.size);
-    ellipse(coinFly2.x, coinFly2.y, coinFly2.size);
-    ellipse(coinFly3.x, coinFly3.y, coinFly3.size);
+    imageMode(CENTER);
+    image(coinImg, coinFly.x, coinFly.y, coinFly.size, coinFly.size);
+    image(coinImg, coinFly2.x, coinFly2.y, coinFly2.size, coinFly2.size);
+    image(coinImg, coinFly3.x, coinFly3.y, coinFly3.size, coinFly3.size);
     pop();
 }
 
@@ -368,7 +365,7 @@ function drawFrog() {
     // Draw the frog's body
     push();
     imageMode(CENTER);
-    image(frogImg, frog.body.x, frog.body.y, frog.body.size, frog.body.size);
+    image(frogImg, frog.body.x, frog.body.y, frogImg.width / 3, frogImg.height / 3);
     pop();
 }
 
