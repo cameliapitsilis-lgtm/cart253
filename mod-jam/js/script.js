@@ -158,10 +158,10 @@ function draw() {
         } else {
             background("#26005cff");
         }
-        // End Screen
-        if (gamemode === "end") {
-            drawEndScreen();
-        }
+    }
+    // End Screen
+    if (gamemode === "end") {
+        drawEndScreen();
     }
 }
 
@@ -177,11 +177,12 @@ function drawStartScreen() {
     textSize(30);
     text("FROG OF DESTINY", width / 2, height / 2);
     //Different Options
-    fill("#ff00eaff");
+    noStroke();
+    fill("#00eeffff");
     rect(width / 2 - 100, height / 2 + 60, 200, 40); // Oracle button
-    fill("#eeff00ff");
+    fill("#ff0000ff");
     rect(width / 2 - 100, height / 2 + 110, 200, 40); // Fortune button
-    fill("#22ff00");
+    fill("#ff00e1ff");
     rect(width / 2 - 100, height / 2 + 160, 200, 40); // Instructions button
     textSize(14);
     fill("#280085ff");
