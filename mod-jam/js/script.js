@@ -180,15 +180,16 @@ function drawStartScreen() {
     //Different Options
     noStroke();
     fill("#00eeffff");
-    rect(width / 2 - 100, height / 2 + 60, 200, 40); // Oracle button
+    //rect(x,y,w,h)
+    rect(width / 2 - 150, height / 2 + 60, 300, 40); // Oracle button
     fill("#ff0000ff");
-    rect(width / 2 - 100, height / 2 + 110, 200, 40); // Fortune button
+    rect(width / 2 - 150, height / 2 + 110, 300, 40); // Fortune button
     fill("#ff00e1ff");
-    rect(width / 2 - 100, height / 2 + 160, 200, 40); // Instructions button
+    rect(width / 2 - 150, height / 2 + 160, 300, 40); // Instructions button
     textSize(14);
     fill("#280085ff");
-    text("ORACLE", width / 2, height / 2 + 80);
-    text("FORTUNE", width / 2, height / 2 + 130);
+    text(" GREEK ORACLE", width / 2, height / 2 + 80);
+    text("CHINESE FORTUNE", width / 2, height / 2 + 130);
     text("INSTRUCTIONS", width / 2, height / 2 + 180);
 }
 //DRAWING END SCREEN COMPONENTS
@@ -219,7 +220,7 @@ function drawScore() {
     }
 
     //Drawing Score Bar
-    fill("#fffb00ff");
+    fill("#12db59ff");
     rect(30, 30, fillWidth, barHeight);
     noFill();
     stroke("#000000ff");
@@ -384,7 +385,7 @@ function moveTongue() {
 function drawFrog() {
     // Draw the tongue tip
     push();
-    fill("#ff0000");
+    fill("#ffffffff");
     noStroke();
     ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
     pop();
