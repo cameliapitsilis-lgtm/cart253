@@ -73,8 +73,8 @@ const frog = {
 };
 
 // ORACLE MODE FLYING OBJECT
-const goldenFly = { x: 0, y: 0, size: 40, speed: 3 };
-const purpleFly = { x: 10, y: 10, size: 40, speed: 5 };
+const goldenFly = { x: 0, y: 0, size: 40, speed: 4 };
+const purpleFly = { x: 10, y: 10, size: 40, speed: 8 };
 
 //FORTUNE MODE FLYING OBJECT
 const coinFly = { x: 0, y: 0, size: 20, speed: 3 };
