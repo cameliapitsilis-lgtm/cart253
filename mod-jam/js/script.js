@@ -51,6 +51,7 @@ let frogImg;
 let goldenFlyImg;
 let purpleFlyImg;
 let coinImg;
+let pixelFont;
 
 // Our frog
 const frog = {
@@ -83,6 +84,8 @@ const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 /* Creates the canvas and initializes the fly */
 // Game Visual Design Images
 function preload() {
+    //Game Font
+    pixelFont = loadFont('assets/font/PressStart2P-Regular.ttf');
     //Game Background
     startBg = loadImage("assets/images/startscreen.png");
     oracleBg = loadImage("assets/images/oraclemode.png");
@@ -99,7 +102,7 @@ function preload() {
 
 function setup() {
     createCanvas(640, 480);
-
+    textFont(pixelFont);
     // Give the fly its first random position
     resetFly();
 }
@@ -160,9 +163,9 @@ function drawStartScreen() {
     }
     fill("#ffffffff");
     textAlign(CENTER, CENTER);
-    textSize(48);
-    text("Frog of Destiny", width / 2, height / 2);
-    textSize(24);
+    textSize(30);
+    text("FROG OF DESTINY", width / 2, height / 2);
+    textSize(14);
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
     fill("#22ff00ff");
     text("Click 'O' for Oracle Frog\nClick 'F' for Fortune Frog", width / 2, height / 2 + 120);
@@ -172,10 +175,10 @@ function drawStartScreen() {
 function drawEndScreen() {
     background("#000000ff");
     textAlign(CENTER, CENTER);
-    textSize(48);
+    textSize(30);
     fill("#ffffffff");
     text(endMessage, width / 2, height / 2);
-    textSize(24);
+    textSize(14);
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
     text("Press 'H' to return home", width / 2, height / 2 + 60);
 }
@@ -195,7 +198,7 @@ function drawScore() {
     // Show "Too Greedy!" message
     if (greedMessageTimer > 0) {
         fill("#ff0000ff");
-        textSize(24);
+        textSize(14);
         textAlign(CENTER, CENTER);
         text(greedMessage, width / 2, height / 2);
         greedMessageTimer--;
