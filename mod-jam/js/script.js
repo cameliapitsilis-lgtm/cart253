@@ -117,6 +117,7 @@ function draw() {
 
     if (gamemode === "start") {
         drawStartScreen();
+
         //Oracle Mode
     } else if (gamemode === "oracle") {
         // Background 
@@ -160,7 +161,7 @@ function draw() {
         }
     }
     // End Screen
-    if (gamemode === "end") {
+    else if (gamemode === "end") {
         drawEndScreen();
     }
 }
@@ -204,15 +205,35 @@ function drawEndScreen() {
 
 //DRAWING SCORING SYSTEM COMPONENTS
 function drawScore() {
-    fill(0);
-    textSize(14);
-    textAlign(LEFT, TOP);
+    let barWidth = 150;
+    let barHeight = 20;
+    let fillWidth;
+    let currentPoints;
+
     if (gamemode === "oracle") {
-        // text("what is written:" + variable, x,y))
-        text("Wisdom Points: " + wisdomPoints, 30, 30);
-    } else if (gamemode === "fortune") {
-        text("Fortune Points: " + fortunePoints, 30, 30);
+        fillWidth = map(wisdomPoints, 0, maxPoints, 0, barWidth);
+        currentPoints = wisdomPoints;
+    } else {
+        fillWidth = map(fortunePoints, 0, maxPoints, 0, barWidth);
+        currentPoints = fortunePoints;
     }
+
+    //Drawing Score Bar
+    fill("#fffb00ff");
+    rect(30, 30, fillWidth, barHeight);
+    noFill();
+    stroke("#000000ff");
+    strokeWeight(2);
+    rect(30, 30, barWidth, barHeight);
+
+    //Drawing Score Number
+    fill("#ffffffff");
+    textSize(14);
+    textAlign(LEFT, CENTER);
+    strokeWeight(3);
+    text(currentPoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
+
+
     //FORTUNE MODE GREED PENALTY MESSAGE
     // Show "Too Greedy!" message
     if (greedMessageTimer > 0) {
