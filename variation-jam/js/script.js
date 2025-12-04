@@ -183,12 +183,14 @@ function draw() {
             background("#26005cff");
         }
         //Game Components Here
-        moveCoinFly();
-        drawCoinFly();
+        moveNileBlessing();
+        drawNileBlessing();
+        moveRebirthSigils();
+        drawRebirthSigils();
         moveFrog();
         moveTongue();
         drawFrog();
-        checkFortuneTongue();
+        checkEgyptTongue();
         drawScore();
     }
 
