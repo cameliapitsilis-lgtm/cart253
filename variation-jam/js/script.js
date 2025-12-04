@@ -50,6 +50,8 @@ let instructionPage = 0; // 0 = first page, 1 = second page
 let wisdomPoints = 0;
 let fortunePoints = 0;
 let vitalityPoints = 0;
+let lovePoints = 0;
+let powerPoints = 0;
 //Adding End Game Message
 let endMessage = "";
 //Game Ends when you reach 10pts
@@ -127,16 +129,8 @@ let rebirthSigil = {
 };
 
 //FAIRYTALE MODE FLYING OBJECT
-let trueLove = {
-    x: 200,
-    y: 200,
-    size: 30,
-}
-let crown = {
-    x: 200,
-    y: 300,
-    size: 30,
-}
+let trueLove;
+let crown;
 
 //SETUP -------------------------------------------------------------------------------------------------------------//
 /* Creates the canvas and initializes the fly */
@@ -173,6 +167,22 @@ function setup() {
     textFont(pixelFont);
     // Give the fly its first random position
     resetFly();
+
+    trueLove = {
+        x: -50,
+        baseY: random(100, height - 150),
+        size: 40,
+        speed: 3,
+        angle: random(0, TWO_PI)   // for sin
+    };
+
+    crown = {
+        x: width + 50,
+        baseY: random(120, height - 120),
+        size: 40,
+        speed: 3,
+        angle: random(0, TWO_PI)   // for cos
+    };
 }
 
 
@@ -251,7 +261,9 @@ function draw() {
         }
         //Game Components Here
         drawTrueLoveKiss();
+        moveTrueLoveKiss();
         drawCrown();
+        moveCrown();
 
         moveFrog();
         moveTongue();
@@ -374,6 +386,9 @@ function drawScore() {
     } else if (gamemode === "rebirth") {
         fillWidth = map(vitalityPoints, 0, maxPoints, 0, barWidth);
         currentPoints = vitalityPoints;
+    } else if (gamemode === "fairytale") {
+        fillWidth = map(lovePoints, 0, maxPoints, 0, barWidth);
+        currentPoints = lovePoints;
     } else {
         return; // no score bar for other screens
     }
@@ -464,7 +479,31 @@ function moveRebirthSigil() {
         rebirthSigil.x = random(50, width - 50);
     }
 }
+//FAIRYTALE MODE//
+function moveTrueLoveKiss() {
+    trueLove.x += trueLove.speed;                 // move right
+    trueLove.angle += 0.06;                       // controls wave speed
+    trueLove.y = trueLove.baseY + sin(trueLove.angle) * 30; // sin wave
 
+    // if off right edge, reset left with random baseY/angle
+    if (trueLove.x > width + 50) {
+        trueLove.x = -50;
+        trueLove.baseY = random(100, height - 150);
+        trueLove.angle = random(0, TWO_PI);
+    }
+}
+function moveCrown() {
+    crown.x -= crown.speed;             // move left
+    crown.angle += 0.06;                // controls wave speed
+    crown.y = crown.baseY + sin(crown.angle) * 30; // cos wave
+
+    // reset when off left edge
+    if (crown.x < -50) {
+        crown.x = width + 50;
+        crown.baseY = random(120, height - 120);
+        crown.angle = random(0, TWO_PI);
+    }
+}
 
 //DRAWING FLYING OBJECTS//----------------------------------------------------------------------------------//
 //ORACLE MODE//
@@ -765,7 +804,7 @@ function endGameTimeout() {
     if (gamemode === "oracle") endMessage = "TIME'S UP! \nPROPHECY FAILED!";
     else if (gamemode === "fortune") endMessage = "TIME'S UP! \nFORTUNE LOST!";
     else if (gamemode === "rebirth") endMessage = "TIME'S UP! \n LIFE CYCLE FAILED!";
-    else if (gamemode === "fairytale") endMessage = "TIME'S UP! \nHAPPILY EVER AFTER LOST!";
+    else if (gamemode === "fairytale") endMessage = "TIME'S UP! \nHAPPILY EVER AFTER\nLOST!";
 
     gamemode = "end";   // switch to end screen
 }
@@ -838,6 +877,8 @@ function keyPressed() {
         wisdomPoints = 0;
         fortunePoints = 0;
         vitalityPoints = 0;
+        lovePoints = 0;
+        powerPoints = 0;
         timer = 30;
         resetFly();
     }
