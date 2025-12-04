@@ -181,7 +181,7 @@ function setup() {
         baseY: random(120, height - 120),
         size: 40,
         speed: 3,
-        angle: random(0, TWO_PI)   // for cos
+        angle: random(0, TWO_PI)
     };
 }
 
@@ -495,7 +495,7 @@ function moveTrueLoveKiss() {
 function moveCrown() {
     crown.x -= crown.speed;             // move left
     crown.angle += 0.06;                // controls wave speed
-    crown.y = crown.baseY + sin(crown.angle) * 30; // cos wave
+    crown.y = crown.baseY + sin(crown.angle) * 30;
 
     // reset when off left edge
     if (crown.x < -50) {
