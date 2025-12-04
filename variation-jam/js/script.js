@@ -79,7 +79,7 @@ let coinImg;
 let nileBlessingImg;
 let rebirthSigilImg
 let crownImg
-let trueloveImg
+let trueLoveImg
 let instructionsImg;
 let instructionsImg2;
 let pixelFont;
@@ -126,6 +126,18 @@ let rebirthSigil = {
     speed: 6
 };
 
+//FAIRYTALE MODE FLYING OBJECT
+let trueLove = {
+    x: 200,
+    y: 200,
+    size: 30,
+}
+let crown = {
+    x: 200,
+    y: 300,
+    size: 30,
+}
+
 //SETUP -------------------------------------------------------------------------------------------------------------//
 /* Creates the canvas and initializes the fly */
 // Game Visual Design Images
@@ -137,7 +149,7 @@ function preload() {
     oracleBg = loadImage("assets/images/oraclemode.png");
     fortuneBg = loadImage("assets/images/fortunemode.png");
     rebirthBg = loadImage("assets/images/rebirthmode.png");
-    fairytaleBgBg = loadImage("assets/images/fairytalemode.png");
+    fairytaleBg = loadImage("assets/images/fairytalemode.png");
     instructionsImg = loadImage("assets/images/instructions.png");
     instructionsImg2 = loadImage("assets/images/instructions2.png")
     //Game Components
@@ -153,7 +165,7 @@ function preload() {
     rebirthSigilImg = loadImage("assets/images/ankh.png");
     //FairyTale Mode
     crownImg = loadImage("assets/images/crown.png");
-    trueloveImg = loadImage("assets/images/truelove.png");
+    trueLoveImg = loadImage("assets/images/truelove.png");
 }
 
 function setup() {
@@ -238,6 +250,8 @@ function draw() {
             background("#26005cff");
         }
         //Game Components Here
+        drawTrueLoveKiss();
+        drawCrown();
 
         moveFrog();
         moveTongue();
@@ -481,6 +495,19 @@ function drawRebirthSigil() {
     push();
     imageMode(CENTER);
     image(rebirthSigilImg, rebirthSigil.x, rebirthSigil.y, rebirthSigil.size, rebirthSigil.size);
+    pop();
+}
+//FAIRYTALE MODE
+function drawTrueLoveKiss() {
+    push();
+    imageMode(CENTER);
+    image(trueLoveImg, trueLove.x, trueLove.y, trueLove.size, trueLove.size);
+    pop();
+}
+function drawCrown() {
+    push();
+    imageMode(CENTER);
+    image(crownImg, crown.x, crown.y, crown.size, crown.size);
     pop();
 }
 
@@ -738,6 +765,7 @@ function endGameTimeout() {
     if (gamemode === "oracle") endMessage = "TIME'S UP! \nPROPHECY FAILED!";
     else if (gamemode === "fortune") endMessage = "TIME'S UP! \nFORTUNE LOST!";
     else if (gamemode === "rebirth") endMessage = "TIME'S UP! \n LIFE CYCLE FAILED!";
+    else if (gamemode === "fairytale") endMessage = "TIME'S UP! \nHAPPILY EVER AFTER LOST!";
 
     gamemode = "end";   // switch to end screen
 }
