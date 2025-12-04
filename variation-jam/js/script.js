@@ -63,10 +63,13 @@ let greedMessageTimer = 0;
 let startBg;
 let oracleBg;
 let fortuneBg;
+let rebirthBg;
 let frogImg;
 let goldenFlyImg;
 let purpleFlyImg;
 let coinImg;
+let nileBlessingImg;
+let rebirthSigilImg
 let instructionsImg;
 let instructionsImg2;
 let pixelFont;
@@ -108,7 +111,7 @@ function preload() {
     startBg = loadImage("assets/images/startscreen.png");
     oracleBg = loadImage("assets/images/oraclemode.png");
     fortuneBg = loadImage("assets/images/fortunemode.png");
-    egyptBg = loadImage("assets/images/rebirthmode.png");
+    rebirthBg = loadImage("assets/images/rebirthmode.png");
     instructionsImg = loadImage("assets/images/instructions.png");
     instructionsImg2 = loadImage("assets/images/instructions2.png")
     //Game Components
@@ -176,8 +179,8 @@ function draw() {
     }
 
     // Rebirth Mode
-    else if (gamemode === "egypt") {
-        if (egyptBg) {
+    else if (gamemode === "rebirth") {
+        if (rebirthBg) {
             image(egyptBg, 0, 0, width, height);
         } else {
             background("#26005cff");
@@ -613,6 +616,7 @@ function mousePressed() {
             }
         }
     }
+
     //Instruction Page Change
     else if (gamemode === "instructions") {
         // Next page arrow (bottom-right)

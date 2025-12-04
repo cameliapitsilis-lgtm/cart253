@@ -62,4 +62,6 @@ abstract-retro-pixel-art-80s-background-eps-10-vector-graphics_18568568.htm?epik
 
 > - The golden & purple prophecies from the greek oracle mode was made by the handsomeunicorn from thehandsomeunicorn.itch.io :https://handsomeunicorn.itch.io/fireball-sprite
 
+> - The crown from the western fairytale mode was made by the Dino Pixel from dinopixel.com :https://dinopixel.com/crown-pixel-art-29971
+
 > - A lot of the code was taken or inspired by Pippin Barr from https://pippinbarr.com/cart253
