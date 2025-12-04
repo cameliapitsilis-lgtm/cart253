@@ -59,6 +59,9 @@ const maxPoints = 10;
 let lastCoinCatchTime = 0;
 let greedMessage = "";
 let greedMessageTimer = 0;
+//Adding Ressurection Penalty to Rebirth Mode//
+let resetMessage = "";
+let resetMessageTimer = 0;
 
 //GAME VISUAL DESIGN
 let startBg;
@@ -352,7 +355,14 @@ function drawScore() {
     strokeWeight(3);
     text(currentPoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
 
-
+    //REBIRTH MODE RESURRECTION PENALTY MESSAGE
+    if (resetMessageTimer > 0) {
+        fill("#ffffffff");
+        textSize(20);
+        textAlign(CENTER, CENTER);
+        text(resetMessage, width / 2, height / 2);
+        resetMessageTimer--;
+    }
     //FORTUNE MODE GREED PENALTY MESSAGE
     // Show "Too Greedy!" message
     if (greedMessageTimer > 0) {
@@ -679,6 +689,9 @@ function checkRebirthSigil() {
         vitalityPoints = 0;        // reset points
         resetNileBlessing();       // reset blessing
         rebirthSigil.y = -50;      // respawn sigil
+        // Set message
+        resetMessage = "Oh no! \nYou have been resurrected!";
+        resetMessageTimer = 120;   // show message for ~2 seconds (60 frames = 1 sec)
     }
 }
 //MOUSE ACTIVATION---------------------------------------------------------------------------------------------------//
