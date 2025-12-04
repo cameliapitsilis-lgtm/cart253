@@ -62,6 +62,9 @@ let greedMessageTimer = 0;
 //Adding Ressurection Penalty to Rebirth Mode//
 let resetMessage = "";
 let resetMessageTimer = 0;
+//Adding Time Constraint
+let timer = 30;        // total time in seconds
+let startTime = 0;     // when the mode started
 
 //GAME VISUAL DESIGN
 let startBg;
@@ -97,7 +100,7 @@ const frog = {
 };
 
 // ORACLE MODE FLYING OBJECT
-const goldenFly = { x: 0, y: 0, size: 40, speed: 6 };
+const goldenFly = { x: 0, y: 0, size: 40, speed: 4 };
 const purpleFly = { x: 10, y: 10, size: 40, speed: 9 };
 
 //FORTUNE MODE FLYING OBJECT
@@ -117,7 +120,7 @@ let rebirthSigil = {
     x: 200, // random horizontal start
     y: 0,             // start offscreen at top
     size: 40,
-    speed: 3
+    speed: 6
 };
 
 //SETUP -------------------------------------------------------------------------------------------------------------//
@@ -153,6 +156,7 @@ function setup() {
     resetFly();
 }
 
+
 //MAIN DRAW FUNCTION -----------------------------------------------------------------------------------------------//
 function draw() {
     background("#26005cff");
@@ -178,6 +182,7 @@ function draw() {
         drawFrog();
         checkOracleTongue();
         drawScore();
+        updateTimer();
     }
     //Fortune Mode
     else if (gamemode === "fortune") {
@@ -195,6 +200,7 @@ function draw() {
         drawFrog();
         checkFortuneTongue();
         drawScore();
+        updateTimer();
     }
 
     // Rebirth Mode
@@ -216,6 +222,7 @@ function draw() {
         moveTongue();
         drawFrog();
         drawScore();
+        updateTimer();
     }
 
     //Instruction Mode
@@ -261,7 +268,6 @@ function draw() {
         drawEndScreen();
     }
 }
-
 // DRAWING GAME START SCREEN COMPONENTS-----------------------------------------------------------------------------//
 function drawStartScreen() {
     if (startBg) {
@@ -285,7 +291,6 @@ function drawStartScreen() {
     text("CHOOSE YOUR DESTINY", width / 2, height / 2 + 100);
     text("INSTRUCTIONS", width / 2, height / 2 + 160);
 }
-
 //DRAWING END SCREEN COMPONENTS-------------------------------------------------------------------------------------//
 function drawEndScreen() {
     background("#000000ff");
@@ -297,7 +302,6 @@ function drawEndScreen() {
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
     text("Press 'esc' to return to start screen", width / 2, height / 2 + 60);
 }
-
 //DRAWING CHOOSE YOUR DESTINY SCREEN
 function drawChooseDestinyScreen() {
     background("rgba(38, 0, 92, 1)");
@@ -319,7 +323,6 @@ function drawChooseDestinyScreen() {
         text(modes[i], width / 2, 140 + i * 70);
     }
 }
-
 //DRAWING SCORING SYSTEM COMPONENTS---------------------------------------------------------------------------------//
 function drawScore() {
     let barWidth = 150;
@@ -374,14 +377,8 @@ function drawScore() {
     }
 }
 
-//FLYING OBJECTS----------------------------------------------------------------------------------------------------//
-/**
- * Oracle Mode: Fly moves from left to right
- * Fortune Mode: Fly moves from top to bottom
- * Resets the fly if it gets all the way to the right or to the bottom
- */
 
-//FLYING OBJECT MOVEMENT AND POSITION//
+//FLYING OBJECTS----------------------------------------------------------------------------------------------------//
 //ORACLE MODE//
 function moveOracleFly() {
     // Oracle Mode
@@ -433,6 +430,7 @@ function moveRebirthSigil() {
     }
 }
 
+
 //DRAWING FLYING OBJECTS//----------------------------------------------------------------------------------//
 //ORACLE MODE//
 function drawOracleFly() {
@@ -442,7 +440,6 @@ function drawOracleFly() {
     image(purpleFlyImg, purpleFly.x, purpleFly.y, purpleFly.size, purpleFly.size);
     pop();
 }
-
 //FORTUNE MODE//
 function drawCoinFly() {
     push();
@@ -452,7 +449,6 @@ function drawCoinFly() {
     image(coinImg, coinFly3.x, coinFly3.y, coinFly3.size, coinFly3.size);
     pop();
 }
-
 //REBIRTH MODE//
 function drawNileBlessing() {
     push();
@@ -467,6 +463,7 @@ function drawRebirthSigil() {
     pop();
 }
 
+
 //RESET FLYING OBJECT POSITION//----------------------------------------------------------------------------------//
 function resetFly() {
     if (gamemode === "oracle") {
@@ -477,6 +474,9 @@ function resetFly() {
         resetCoinFly(coinFly);
         resetCoinFly(coinFly2);
         resetCoinFly(coinFly3);
+    }
+    else if (gamemode === "rebirth") {
+        resetNileBlessing();
     }
 }
 //ORACLE MODE RESET//
@@ -509,7 +509,6 @@ function resetNileBlessing() {
 function moveFrog() {
     frog.body.x = mouseX;
 }
-
 /**
  * Handles moving the tongue based on its state
  */
@@ -537,7 +536,6 @@ function moveTongue() {
         }
     }
 }
-
 /* Displays the tongue (tip and line connection) and the frog (body) */
 function drawFrog() {
     // Draw the tongue tip
@@ -561,7 +559,8 @@ function drawFrog() {
     pop();
 }
 
-//GAME PLAY-------------------------------------------------------------------------------------------------------//
+
+//GAME PLAY & END MESSAGES--------------------------------------------------------------------------------------------//
 //ORACLE MODE TONGUE//
 function checkOracleTongue() {
     // Get distance from tongue to fly
@@ -589,7 +588,6 @@ function checkOracleTongue() {
         frog.tongue.state = "inbound";
     }
 }
-
 //FORTUNE MODE TONGUE//
 function checkFortuneTongue() {
     let now = millis(); //time component for the greed penalty
@@ -661,7 +659,6 @@ function checkFortuneTongue() {
         }
     }
 }
-
 //REBIRTH MODE TONGUE//
 function checkRebirthTongue() {
     const d = dist(frog.tongue.x, frog.tongue.y, nileBlessing.x, nileBlessing.y);
@@ -679,7 +676,6 @@ function checkRebirthTongue() {
         }
     }
 }
-
 //REBIRTH MODE SIGIL GAME RESET
 function checkRebirthSigil() {
     const d = dist(frog.body.x, frog.body.y, rebirthSigil.x, rebirthSigil.y);
@@ -694,6 +690,39 @@ function checkRebirthSigil() {
         resetMessageTimer = 120;   // show message for ~2 seconds (60 frames = 1 sec)
     }
 }
+
+
+//TIME CONSTRAINT---------------------------------------------------------------------------------------------------//
+function startTimer(duration) {
+    timer = duration;       // set the countdown
+    startTime = millis();   // record the start time
+}
+//UPDATE & DRAW TIMER
+function updateTimer() {
+    let elapsed = (millis() - startTime) / 1000;  // convert ms to seconds
+    let timeLeft = max(0, timer - elapsed);       // prevent negative numbers
+
+    // Draw timer on screen
+    fill("#ffffffff");
+    textSize(14);
+    textAlign(RIGHT, TOP);
+    text("Time: " + ceil(timeLeft), width - 30, 30);
+
+    // End game if time runs out
+    if (timeLeft <= 0) {
+        endGameTimeout();
+    }
+}
+//TIMER GAMEOVER MESSAGE
+function endGameTimeout() {
+    if (gamemode === "oracle") endMessage = "TIME'S UP! \nPROPHECY FAILED!";
+    else if (gamemode === "fortune") endMessage = "TIME'S UP! \nFORTUNE LOST!";
+    else if (gamemode === "rebirth") endMessage = "TIME'S UP! \n LIFE CYCLE FAILED!";
+
+    gamemode = "end";   // switch to end screen
+}
+
+
 //MOUSE ACTIVATION---------------------------------------------------------------------------------------------------//
 /**
  * Launch the tongue on click (if it's not launched yet)
@@ -720,6 +749,12 @@ function mousePressed() {
                 mouseY > 120 + i * 60 && mouseY < 160 + i * 60) {
                 gamemode = modes[i]; // set actual game mode
                 resetFly(); // reset positions
+
+                // START THE TIMER HERE
+                if (gamemode === "oracle") startTimer(30);
+                else if (gamemode === "fortune") startTimer(30);
+                else if (gamemode === "rebirth") startTimer(30);
+                else if (gamemode === "fairy") startTimer(30);
             }
         }
     }
@@ -745,6 +780,7 @@ function mousePressed() {
     }
 }
 
+
 //ACTIVATION USING KEYPRESSED---------------------------------------------------------------------------------------//
 function keyPressed() {
     // RETURN TO START SCREEN USING KEYPRESSED
@@ -753,6 +789,8 @@ function keyPressed() {
         instructionPage = 0;
         wisdomPoints = 0;
         fortunePoints = 0;
+        vitalityPoints = 0;
+        timer = 30;
         resetFly();
     }
 }
