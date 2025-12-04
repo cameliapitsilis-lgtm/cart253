@@ -113,12 +113,12 @@ let nileBlessing = {
     x: -50,
     y: 200,
     size: 30,
-    speed: 2,
-    angle: 0
+    speed: 5,
+    angle: 10
 };
 let rebirthSigil = {
-    x: 200, // random horizontal start
-    y: 0,             // start offscreen at top
+    x: 200,
+    y: 0,
     size: 40,
     speed: 6
 };
@@ -499,7 +499,6 @@ function resetNileBlessing() {
     nileBlessing.x = -50; // start offscreen left
     nileBlessing.y = random(100, height - 100); // random vertical start
     nileBlessing.angle = random(0, TWO_PI); // random sine phase
-    nileBlessing.speed = random(2, 4); // optional speed variation
 }
 
 //FROG---------------------------------------------------------------------------------------------------------------//
