@@ -105,7 +105,7 @@ const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 let nileBlessing = {
     x: -50,
     y: 200,
-    size: 50,
+    size: 30,
     speed: 2,
     angle: 0
 };
@@ -367,7 +367,7 @@ function moveOracleFly() {
         if (purpleFly.x > width) resetPurpleFly();
     }
 }
-//FORTUNE MODE FLY//
+//FORTUNE MODE//
 function moveCoinFly() {
 
     // move first coin
@@ -381,6 +381,20 @@ function moveCoinFly() {
     // move third coin
     coinFly3.y += coinFly3.speed;
     if (coinFly3.y > height) resetCoinFly(coinFly3);
+}
+//REBIRTH MODE//
+function moveNileBlessing() {
+    // move horizontally
+    nileBlessing.x += nileBlessing.speed;
+
+    // vertical sine wave
+    nileBlessing.angle += 0.05;       // wave speed
+    nileBlessing.y = 200 + sin(nileBlessing.angle) * 50; // fixed vertical offset + amplitude
+
+    // Reset if it moves off the right edge
+    if (nileBlessing.x > width + 50) {
+        resetNileBlessing();
+    }
 }
 
 //DRAWING FLYING OBJECTS//
@@ -404,17 +418,11 @@ function drawCoinFly() {
 }
 
 //REBIRTH MODE//
-function moveNileBlessing() {
-    nileBlessing.x += nileBlessing.speed;
-    nileBlessing.angle += 0.05;
-    nileBlessing.y += sin(nileBlessing.angle) * 2;
-
-    if (nileBlessing.x > width) {
-        resetNileBlessing();
-    }
-}
 function drawNileBlessing() {
+    push();
+    imageMode(CENTER);
     image(nileBlessingImg, nileBlessing.x, nileBlessing.y, nileBlessing.size, nileBlessing.size);
+    pop();
 }
 //RESET FLYING OBJECT POSITION//
 function resetFly() {
@@ -428,7 +436,6 @@ function resetFly() {
         resetCoinFly(coinFly3);
     }
 }
-
 //ORACLE MODE RESET//
 function resetGoldenFly() {
     goldenFly.x = 0;
@@ -438,12 +445,19 @@ function resetPurpleFly() {
     purpleFly.x = 0;
     purpleFly.y = random(100, 300);
 }
-
 //FORTUNE MODE RESET//
 function resetCoinFly(coin) {
     coin.x = random(20, width - 20);
     coin.y = 0;
     coin.speed = random(3, 6);
+}
+
+//REBIRTH MODE RESET//
+function resetNileBlessing() {
+    nileBlessing.x = -50; // start offscreen left
+    nileBlessing.y = random(100, height - 100); // random vertical start
+    nileBlessing.angle = random(0, TWO_PI); // random sine phase
+    nileBlessing.speed = random(2, 4); // optional speed variation
 }
 
 //FROG---------------------------------------------------------------------------------------------------------------//
