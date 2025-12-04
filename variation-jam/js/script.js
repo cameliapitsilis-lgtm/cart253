@@ -108,6 +108,7 @@ function preload() {
     startBg = loadImage("assets/images/startscreen.png");
     oracleBg = loadImage("assets/images/oraclemode.png");
     fortuneBg = loadImage("assets/images/fortunemode.png");
+    egyptBg = loadImage("assets/images/rebirthmode.png");
     instructionsImg = loadImage("assets/images/instructions.png");
     instructionsImg2 = loadImage("assets/images/instructions2.png")
     //Game Components
@@ -118,6 +119,9 @@ function preload() {
     purpleFlyImg = loadImage("assets/images/purpleorb.png");
     // Fortune Mode
     coinImg = loadImage("assets/images/coins.png");
+    // Rebirth Mode
+    nileBlessingImg = loadImage("assets/images/blessings.png");
+    rebirthSigilImg = loadImage("assets/images/ankh.png");
 }
 
 function setup() {
