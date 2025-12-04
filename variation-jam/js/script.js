@@ -71,12 +71,15 @@ let startBg;
 let oracleBg;
 let fortuneBg;
 let rebirthBg;
+let fairytaleBg
 let frogImg;
 let goldenFlyImg;
 let purpleFlyImg;
 let coinImg;
 let nileBlessingImg;
 let rebirthSigilImg
+let crownImg
+let trueloveImg
 let instructionsImg;
 let instructionsImg2;
 let pixelFont;
@@ -134,6 +137,7 @@ function preload() {
     oracleBg = loadImage("assets/images/oraclemode.png");
     fortuneBg = loadImage("assets/images/fortunemode.png");
     rebirthBg = loadImage("assets/images/rebirthmode.png");
+    fairytaleBgBg = loadImage("assets/images/fairytalemode.png");
     instructionsImg = loadImage("assets/images/instructions.png");
     instructionsImg2 = loadImage("assets/images/instructions2.png")
     //Game Components
@@ -147,6 +151,9 @@ function preload() {
     // Rebirth Mode
     nileBlessingImg = loadImage("assets/images/blessings.png");
     rebirthSigilImg = loadImage("assets/images/ankh.png");
+    //FairyTale Mode
+    crownImg = loadImage("assets/images/crown.png");
+    trueloveImg = loadImage("assets/images/truelove.png");
 }
 
 function setup() {
@@ -202,7 +209,6 @@ function draw() {
         drawScore();
         updateTimer();
     }
-
     // Rebirth Mode
     else if (gamemode === "rebirth") {
         if (rebirthBg) {
@@ -217,6 +223,21 @@ function draw() {
         checkRebirthSigil();
         moveRebirthSigil();
         drawRebirthSigil();
+
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        drawScore();
+        updateTimer();
+    }
+    // Fairy Tale Mode
+    else if (gamemode === "fairytale") {
+        if (fairytaleBg) {
+            image(fairytaleBg, 0, 0, width, height);
+        } else {
+            background("#26005cff");
+        }
+        //Game Components Here
 
         moveFrog();
         moveTongue();
@@ -742,7 +763,7 @@ function mousePressed() {
     }
     // Game Mode Selection
     else if (gamemode === "chooseDestiny") {
-        const modes = ["oracle", "fortune", "rebirth", "fairy"]; // internal gamemode names
+        const modes = ["oracle", "fortune", "rebirth", "fairytale"]; // internal gamemode names
         for (let i = 0; i < modes.length; i++) {
             if (mouseX > width / 2 - 150 && mouseX < width / 2 + 150 &&
                 mouseY > 120 + i * 60 && mouseY < 160 + i * 60) {
@@ -753,7 +774,7 @@ function mousePressed() {
                 if (gamemode === "oracle") startTimer(30);
                 else if (gamemode === "fortune") startTimer(30);
                 else if (gamemode === "rebirth") startTimer(30);
-                else if (gamemode === "fairy") startTimer(30);
+                else if (gamemode === "fairytale") startTimer(30);
             }
         }
     }
