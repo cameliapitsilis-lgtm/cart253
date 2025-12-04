@@ -181,7 +181,7 @@ function draw() {
     // Rebirth Mode
     else if (gamemode === "rebirth") {
         if (rebirthBg) {
-            image(egyptBg, 0, 0, width, height);
+            image(rebirthBg, 0, 0, width, height);
         } else {
             background("#26005cff");
         }
@@ -397,6 +397,19 @@ function drawCoinFly() {
     pop();
 }
 
+//REBIRTH MODE//
+function moveNileBlessing() {
+    nileBlessing.x += nileBlessing.speed;
+    nileBlessing.angle += 0.05;
+    nileBlessing.y += sin(nileBlessing.angle) * 2;
+
+    if (nileBlessing.x > width) {
+        resetNileBlessing();
+    }
+}
+function drawNileBlessing() {
+    image(nileBlessingImg, nileBlessing.x, nileBlessing.y, nileBlessing.size, nileBlessing.size);
+}
 //RESET FLYING OBJECT POSITION//
 function resetFly() {
     if (gamemode === "oracle") {
