@@ -205,6 +205,7 @@ function draw() {
         moveNileBlessing();
         drawNileBlessing();
         checkRebirthTongue();
+        checkRebirthSigil();
         moveRebirthSigil();
         drawRebirthSigil();
 
@@ -550,7 +551,7 @@ function drawFrog() {
     pop();
 }
 
-//SCORING SYSTEM AND TONGUE MOVEMENT--------------------------------------------------------------------------------//
+//GAME PLAY-------------------------------------------------------------------------------------------------------//
 //ORACLE MODE TONGUE//
 function checkOracleTongue() {
     // Get distance from tongue to fly
@@ -666,6 +667,18 @@ function checkRebirthTongue() {
             gamemode = "end";
             endMessage = "LIFE CYCLE COMPLETED!";
         }
+    }
+}
+
+//REBIRTH MODE SIGIL GAME RESET
+function checkRebirthSigil() {
+    const d = dist(frog.body.x, frog.body.y, rebirthSigil.x, rebirthSigil.y);
+    if (d < (frogImg.width / 6 + rebirthSigil.size / 2)) { // adjust for frog size
+        // Reset game
+        gamemode = "rebirth";      // restart rebirth mode
+        vitalityPoints = 0;        // reset points
+        resetNileBlessing();       // reset blessing
+        rebirthSigil.y = -50;      // respawn sigil
     }
 }
 //MOUSE ACTIVATION---------------------------------------------------------------------------------------------------//
