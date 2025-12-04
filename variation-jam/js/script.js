@@ -49,6 +49,7 @@ let instructionPage = 0; // 0 = first page, 1 = second page
 // Adding Scoring System
 let wisdomPoints = 0;
 let fortunePoints = 0;
+let vitalityPoints = 0;
 //Adding End Game Message
 let endMessage = "";
 //Game Ends when you reach 10pts
@@ -197,10 +198,12 @@ function draw() {
         //Game Components Here
         moveNileBlessing();
         drawNileBlessing();
+        checkRebirthTongue();
 
         moveFrog();
         moveTongue();
         drawFrog();
+        drawScore();
     }
 
     //Instruction Mode
@@ -315,9 +318,14 @@ function drawScore() {
     if (gamemode === "oracle") {
         fillWidth = map(wisdomPoints, 0, maxPoints, 0, barWidth);
         currentPoints = wisdomPoints;
-    } else {
+    } else if (gamemode === "fortune") {
         fillWidth = map(fortunePoints, 0, maxPoints, 0, barWidth);
         currentPoints = fortunePoints;
+    } else if (gamemode === "rebirth") {
+        fillWidth = map(vitalityPoints, 0, maxPoints, 0, barWidth);
+        currentPoints = vitalityPoints;
+    } else {
+        return; // no score bar for other screens
     }
 
     //Drawing Score Bar
@@ -620,6 +628,23 @@ function checkFortuneTongue() {
     }
 }
 
+//REBIRTH MODE TONGUE//
+function checkRebirthTongue() {
+    const d = dist(frog.tongue.x, frog.tongue.y, nileBlessing.x, nileBlessing.y);
+    const eaten = d < (frog.tongue.size / 2 + nileBlessing.size / 2);
+
+    if (eaten) {
+        vitalityPoints++;
+        resetNileBlessing();          // respawn the blessing
+        frog.tongue.state = "inbound"; // retract tongue
+
+        // Optional: end game or max points check
+        if (vitalityPoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "REBIRTH ACHIEVED!";
+        }
+    }
+}
 //MOUSE ACTIVATION---------------------------------------------------------------------------------------------------//
 /**
  * Launch the tongue on click (if it's not launched yet)
