@@ -794,7 +794,7 @@ function mousePressed() {
         const modes = ["oracle", "fortune", "rebirth", "fairytale"]; // internal gamemode names
         for (let i = 0; i < modes.length; i++) {
             if (mouseX > width / 2 - 150 && mouseX < width / 2 + 150 &&
-                mouseY > 120 + i * 60 && mouseY < 160 + i * 60) {
+                mouseY > 120 + i * 70 && mouseY < 160 + i * 70) {
                 gamemode = modes[i]; // set actual game mode
                 resetFly(); // reset positions
 
