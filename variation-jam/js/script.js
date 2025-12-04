@@ -111,9 +111,10 @@ let nileBlessing = {
     angle: 0
 };
 let rebirthSigil = {
-    x: 10,
-    y: 200,
-    size: 30,
+    x: 200, // random horizontal start
+    y: 0,             // start offscreen at top
+    size: 40,
+    speed: 3
 };
 
 //SETUP -------------------------------------------------------------------------------------------------------------//
@@ -204,6 +205,7 @@ function draw() {
         moveNileBlessing();
         drawNileBlessing();
         checkRebirthTongue();
+        moveRebirthSigil();
         drawRebirthSigil();
 
         moveFrog();
@@ -408,6 +410,15 @@ function moveNileBlessing() {
     // Reset if it moves off the right edge
     if (nileBlessing.x > width + 50) {
         resetNileBlessing();
+    }
+}
+function moveRebirthSigil() {
+    rebirthSigil.y += rebirthSigil.speed;
+
+    // reset if offscreen bottom
+    if (rebirthSigil.y > height + 50) {
+        rebirthSigil.y = -50;
+        rebirthSigil.x = random(50, width - 50);
     }
 }
 
