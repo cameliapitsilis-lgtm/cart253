@@ -174,6 +174,24 @@ function draw() {
         checkFortuneTongue();
         drawScore();
     }
+
+    // Rebirth Mode
+    else if (gamemode === "egypt") {
+        if (egyptBg) {
+            image(egyptBg, 0, 0, width, height);
+        } else {
+            background("#26005cff");
+        }
+        //Game Components Here
+        moveCoinFly();
+        drawCoinFly();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkFortuneTongue();
+        drawScore();
+    }
+
     //Instruction Mode
     else if (gamemode === "instructions") {
         if (instructionPage === 0) {
