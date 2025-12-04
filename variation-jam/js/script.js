@@ -111,10 +111,9 @@ let nileBlessing = {
     angle: 0
 };
 let rebirthSigil = {
-    x: random(50, 590), // random horizontal start
-    y: -50,             // start offscreen at top
-    size: 40,
-    speed: 3
+    x: 10,
+    y: 200,
+    size: 30,
 };
 
 //SETUP -------------------------------------------------------------------------------------------------------------//
@@ -205,6 +204,7 @@ function draw() {
         moveNileBlessing();
         drawNileBlessing();
         checkRebirthTongue();
+        drawRebirthSigil();
 
         moveFrog();
         moveTongue();
@@ -411,7 +411,7 @@ function moveNileBlessing() {
     }
 }
 
-//DRAWING FLYING OBJECTS//
+//DRAWING FLYING OBJECTS//----------------------------------------------------------------------------------//
 //ORACLE MODE//
 function drawOracleFly() {
     push();
@@ -438,7 +438,14 @@ function drawNileBlessing() {
     image(nileBlessingImg, nileBlessing.x, nileBlessing.y, nileBlessing.size, nileBlessing.size);
     pop();
 }
-//RESET FLYING OBJECT POSITION//
+function drawRebirthSigil() {
+    push();
+    imageMode(CENTER);
+    image(rebirthSigilImg, rebirthSigil.x, rebirthSigil.y, rebirthSigil.size, rebirthSigil.size);
+    pop();
+}
+
+//RESET FLYING OBJECT POSITION//----------------------------------------------------------------------------------//
 function resetFly() {
     if (gamemode === "oracle") {
         resetGoldenFly();
@@ -465,7 +472,6 @@ function resetCoinFly(coin) {
     coin.y = 0;
     coin.speed = random(3, 6);
 }
-
 //REBIRTH MODE RESET//
 function resetNileBlessing() {
     nileBlessing.x = -50; // start offscreen left
