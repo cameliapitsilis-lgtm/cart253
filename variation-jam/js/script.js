@@ -110,6 +110,12 @@ let nileBlessing = {
     speed: 2,
     angle: 0
 };
+let rebirthSigil = {
+    x: random(50, 590), // random horizontal start
+    y: -50,             // start offscreen at top
+    size: 40,
+    speed: 3
+};
 
 //SETUP -------------------------------------------------------------------------------------------------------------//
 /* Creates the canvas and initializes the fly */
@@ -641,7 +647,7 @@ function checkRebirthTongue() {
         // Optional: end game or max points check
         if (vitalityPoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "REBIRTH ACHIEVED!";
+            endMessage = "LIFE CYCLE COMPLETED!";
         }
     }
 }
