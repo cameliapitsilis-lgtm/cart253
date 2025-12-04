@@ -76,7 +76,7 @@ const frog = {
     // The frog's body has a position and size
     body: {
         x: 320,
-        y: 442,
+        y: 435,
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
