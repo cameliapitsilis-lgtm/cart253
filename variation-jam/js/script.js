@@ -101,6 +101,15 @@ const coinFly = { x: 0, y: 0, size: 20, speed: 3 };
 const coinFly2 = { x: 0, y: 0, size: 20, speed: 4 };
 const coinFly3 = { x: 0, y: 0, size: 20, speed: 5 };
 
+//REBIRTH MODE FLYING OBJECT
+let nileBlessing = {
+    x: -50,
+    y: 200,
+    size: 50,
+    speed: 2,
+    angle: 0
+};
+
 //SETUP -------------------------------------------------------------------------------------------------------------//
 /* Creates the canvas and initializes the fly */
 // Game Visual Design Images
@@ -188,13 +197,10 @@ function draw() {
         //Game Components Here
         moveNileBlessing();
         drawNileBlessing();
-        moveRebirthSigils();
-        drawRebirthSigils();
+
         moveFrog();
         moveTongue();
         drawFrog();
-        checkEgyptTongue();
-        drawScore();
     }
 
     //Instruction Mode
