@@ -264,6 +264,7 @@ function draw() {
         moveTrueLoveKiss();
         drawCrown();
         moveCrown();
+        checkFairytaleTongue();
 
         moveFrog();
         moveTongue();
@@ -484,13 +485,6 @@ function moveTrueLoveKiss() {
     trueLove.x += trueLove.speed;                 // move right
     trueLove.angle += 0.06;                       // controls wave speed
     trueLove.y = trueLove.baseY + sin(trueLove.angle) * 30; // sin wave
-
-    // if off right edge, reset left with random baseY/angle
-    if (trueLove.x > width + 50) {
-        trueLove.x = -50;
-        trueLove.baseY = random(100, height - 150);
-        trueLove.angle = random(0, TWO_PI);
-    }
 }
 function moveCrown() {
     crown.x -= crown.speed;             // move left
@@ -565,6 +559,9 @@ function resetFly() {
     else if (gamemode === "rebirth") {
         resetNileBlessing();
     }
+    else if (gamemode === "fairytale") {
+        resetTrueLove();
+    }
 }
 //ORACLE MODE RESET//
 function resetGoldenFly() {
@@ -586,6 +583,12 @@ function resetNileBlessing() {
     nileBlessing.x = -50; // start offscreen left
     nileBlessing.y = random(100, height - 100); // random vertical start
     nileBlessing.angle = random(0, TWO_PI); // random sine phase
+}
+//FAIRYTALE MODE RESET//
+function resetTrueLove() {
+    trueLove.x = -50; // start offscreen left
+    trueLove.y = random(100, height - 150); // random vertical start
+    trueLove.angle = random(0, TWO_PI); // random sine phase
 }
 
 //FROG---------------------------------------------------------------------------------------------------------------//
@@ -647,7 +650,7 @@ function drawFrog() {
 
 
 //GAME PLAY & END MESSAGES--------------------------------------------------------------------------------------------//
-//ORACLE MODE TONGUE//
+//ORACLE MODE//
 function checkOracleTongue() {
     // Get distance from tongue to fly
     const dGold = dist(frog.tongue.x, frog.tongue.y, goldenFly.x, goldenFly.y);
@@ -674,7 +677,7 @@ function checkOracleTongue() {
         frog.tongue.state = "inbound";
     }
 }
-//FORTUNE MODE TONGUE//
+//FORTUNE MODE//
 function checkFortuneTongue() {
     let now = millis(); //time component for the greed penalty
 
@@ -745,7 +748,7 @@ function checkFortuneTongue() {
         }
     }
 }
-//REBIRTH MODE TONGUE//
+//REBIRTH MODE//
 function checkRebirthTongue() {
     const d = dist(frog.tongue.x, frog.tongue.y, nileBlessing.x, nileBlessing.y);
     const eaten = d < (frog.tongue.size / 2 + nileBlessing.size / 2);
@@ -762,7 +765,7 @@ function checkRebirthTongue() {
         }
     }
 }
-//REBIRTH MODE SIGIL GAME RESET
+//REBIRTH MODE SIGIL GAME RESET PENALTY
 function checkRebirthSigil() {
     const d = dist(frog.body.x, frog.body.y, rebirthSigil.x, rebirthSigil.y);
     if (d < (frogImg.width / 6 + rebirthSigil.size / 2)) { // adjust for frog size
@@ -776,8 +779,22 @@ function checkRebirthSigil() {
         resetMessageTimer = 120;   // show message for ~2 seconds (60 frames = 1 sec)
     }
 }
+//FAIRYTALE MODE//
+function checkFairytaleTongue() {
+    const d = dist(frog.tongue.x, frog.tongue.y, trueLove.x, trueLove.y);
+    const eaten = d < (frog.tongue.size / 2 + trueLove.size / 2);
 
-
+    if (eaten) {
+        lovePoints++;
+        resetTrueLove();
+        frog.tongue.state = "inbound"; // retract tongue
+        // Optional: end game or max points check
+        if (lovePoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "LOVE TRIUMPHS!\nThe frog becomes human\nby true love's kiss.";
+        }
+    }
+}
 //TIME CONSTRAINT---------------------------------------------------------------------------------------------------//
 function startTimer(duration) {
     timer = duration;       // set the countdown
@@ -804,7 +821,7 @@ function endGameTimeout() {
     if (gamemode === "oracle") endMessage = "TIME'S UP! \nPROPHECY FAILED!";
     else if (gamemode === "fortune") endMessage = "TIME'S UP! \nFORTUNE LOST!";
     else if (gamemode === "rebirth") endMessage = "TIME'S UP! \n LIFE CYCLE FAILED!";
-    else if (gamemode === "fairytale") endMessage = "TIME'S UP! \nHAPPILY EVER AFTER\nLOST!";
+    else if (gamemode === "fairytale") endMessage = "TIME'S UP! \nHAPPILY EVER AFTER\nNOT ACHIEVED!";
 
     gamemode = "end";   // switch to end screen
 }
