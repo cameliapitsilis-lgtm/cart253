@@ -54,6 +54,7 @@ let lovePoints = 0;
 let powerPoints = 0;
 //Adding End Game Message
 let endMessage = "";
+let endSubtitle = ""; // optional paragraph under main title of End Screens
 //Game Ends when you reach 10pts
 const maxPoints = 10;
 // Adding Greed Penalty to Fortune Mode//
@@ -172,7 +173,7 @@ function setup() {
         x: -50,
         baseY: random(100, height - 150),
         size: 40,
-        speed: 2,
+        speed: 4,
         angle: random(0, TWO_PI)   // for sin
     };
 
@@ -180,7 +181,7 @@ function setup() {
         x: width + 50,
         baseY: random(120, height - 120),
         size: 40,
-        speed: 3,
+        speed: 5,
         angle: random(0, TWO_PI)
     };
 }
@@ -341,14 +342,18 @@ function drawStartScreen() {
 }
 //DRAWING END SCREEN COMPONENTS-------------------------------------------------------------------------------------//
 function drawEndScreen() {
-    background("#000000ff");
+    background("#20006cff");
     textAlign(CENTER, CENTER);
-    textSize(30);
-    fill("#ffffffff");
+    textSize(25);
+    fill("#eaff00ff");
     text(endMessage, width / 2, height / 2);
-    textSize(12);
+    textSize(15);
+    fill("#ffffffff");
+    text(endSubtitle, width / 2, height / 2 + 60);
+    fill("#a781ffff");
+    textSize(10);
     // text ("message", width/2 (horizontal center, height/2 (vertical center)))
-    text("Press 'esc' to return to start screen", width / 2, height / 2 + 60);
+    text("Press 'esc' to return to start screen", width / 2, height / 2 + 200);
 }
 //DRAWING CHOOSE YOUR DESTINY SCREEN
 function drawChooseDestinyScreen() {
@@ -711,13 +716,15 @@ function checkOracleTongue() {
         frog.tongue.state = "inbound";
         if (wisdomPoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "PROPHECY ACHIEVED!";
+            endMessage = "WISDOM ACQUIRED!"
+            endSubtitle = "Here is the prophecy: \nCamelia will get an amazing \ngrade on this project hehe";
         }
     }
 
     if (eatenPurple) {
         gamemode = "end";
         endMessage = "DESTINY FAILED!";
+        endSubtitle = "You have been misguided\nby the false prophecies!\n Gullibility becomes you. ";
         frog.tongue.state = "inbound";
     }
 }
@@ -745,6 +752,7 @@ function checkFortuneTongue() {
         if (fortunePoints >= maxPoints) {
             gamemode = "end";
             endMessage = "FORTUNE FAVOURS YOU!";
+            endSubtitle = "Oh great Chan Chu,\nyou truly bring fortune\nto those around you!";
         }
     }
 
@@ -806,6 +814,7 @@ function checkRebirthTongue() {
         if (vitalityPoints >= maxPoints) {
             gamemode = "end";
             endMessage = "LIFE CYCLE COMPLETED!";
+            endSubtitle = "You have completed your life's\npurpose! Hequet blesses you with \nascension to the afterlife";
         }
     }
 }
@@ -836,7 +845,8 @@ function checkFairytaleTongue() {
         // Optional: end game or max points check
         if (lovePoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "LOVE TRIUMPHS!\nThe frog becomes human\nby true love's kiss.";
+            endMessage = "LOVE TRIUMPHS!";
+            endSubtitle = "You have found your true love,\nthrough a kiss you lift your curse\nand live happily ever after~";
         }
     }
     //Crown of Power
@@ -849,7 +859,8 @@ function checkFairytaleTongue() {
         frog.tongue.state = "inbound"; // retract tongue
         if (powerPoints >= maxPoints) {
             gamemode = "end";
-            endMessage = "POWER TRIUMPHS!\nThe frog rules the land!";
+            endMessage = "POWER TRIUMPHS!";
+            endSubtitle = "Your true love is Power & Influence.\nYou have found your place as king\nof the frogs & plan to take over\nthe swamp kingdom.";
         }
     }
 }
@@ -876,10 +887,12 @@ function updateTimer() {
 }
 //TIMER GAMEOVER MESSAGE
 function endGameTimeout() {
-    if (gamemode === "oracle") endMessage = "TIME'S UP! \nPROPHECY FAILED!";
-    else if (gamemode === "fortune") endMessage = "TIME'S UP! \nFORTUNE LOST!";
-    else if (gamemode === "rebirth") endMessage = "TIME'S UP! \n LIFE CYCLE FAILED!";
-    else if (gamemode === "fairytale") endMessage = "TIME'S UP! \nHAPPILY EVER AFTER\nNOT ACHIEVED!";
+    if (gamemode === "oracle") { endMessage = "TIME'S UP! \nPROPHECY FAILED!"; endSubtitle = ""; }
+    else if (gamemode === "fortune") {
+        endMessage = "TIME'S UP! \nFORTUNE LOST!"; endSubtitle = "";
+    }
+    else if (gamemode === "rebirth") { endMessage = "TIME'S UP! \n LIFE CYCLE FAILED!"; endSubtitle = ""; }
+    else if (gamemode === "fairytale") { endMessage = "TIME'S UP! \nHAPPILY EVER AFTER\nNOT ACHIEVED!"; endSubtitle = ""; }
 
     gamemode = "end";   // switch to end screen
 }

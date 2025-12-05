@@ -26,19 +26,19 @@ different ending based on the frog’s priorities.
  - Click to launch the tongue
  - Catch object
 
-MY CONTRIBUTIONS TO THE CODE:
- - Added different game states: start, oracle, fortune, instructions, end.
- - Added title screen with clickable buttons to select game mode.
- - Added an instructions screen.
- - Added two game modes:
-    - Oracle Mode: Catch golden orbs, avoid purple orbs; scoring with wisdomPoints.
-    - Fortune Mode: Catch coins; greed penalty decreases fortunePoints if catching too fast.
- - Added ending screens with different messages per mode.
- - Added scoring bars with dynamic filling based on points.
- - Added multiple flying objects per mode with varying speeds and reset positions.
- - Replaced frog ellipse with frog image.
- - Added custom font and visual design for UI.
- - Added dynamic messages (greed penalty, end message).
+CHANGES MADE TO THE MOD JAM CODE:
+ - Added additional game states: choose your destiny, rebirth, fairytale, different ends.
+ - Changed the title screen to have only 2 clickable buttoms for better user interface: choose your... and instructions.
+ - Added a menu system: Choose your destiny before gameplay
+ - Added an extra instructions page with clickable next and previous arrows.
+ - Added multiple game endings based on performance and choices with custom messaging for each.
+ - Added two new game modes:
+    - Rebirth Mode: Catch nile blessings to increase your vitality points and make sure to avoir rebirth sigil to avoid resurrecting and restart the game.
+    - Fairy Tale Mode: Chose your destiny by catching either True Love's Kiss to gain love points or Crown of Power to gain power points.
+ - Added time constraints to all the game modes.
+ - Added custom scoring bars with dynamic filling based on points.
+ - Added different movement and combined them in certain game modes
+ - Improved visuals: new frog image, cohesive background and flyin objects designs.
  
 
 ## Screenshot(s)
@@ -46,6 +46,8 @@ MY CONTRIBUTIONS TO THE CODE:
 > ![Image of game start screen](./assets/images/startscreen_game.png)
 > ![Image of greek oracle game mode](./assets/images/oracle_game.png)
 > ![Image of chinese fortune game mode](./assets/images/fortune_game.png)
+> ![Image of egyptician rebirth game mode](./assets/images/rebirth_mode.png)
+> ![Image of western fairytale game mode](./assets/images/fairytale_mode.png)
 
 ## Attribution
 
@@ -54,14 +56,28 @@ MY CONTRIBUTIONS TO THE CODE:
 > - The background of the start screen was made by user3679043 from freepick.com: https://www.freepik.com/premium-vector/
 abstract-retro-pixel-art-80s-background-eps-10-vector-graphics_18568568.htm?epik=dj0yJnU9cklDOTBFUEtrbEdmNDZ6Q3lLWHl6XzZVYzRGWVdRdmcmcD0wJm49cTlVOG5fZnZBSVRoVUsyd3ZEcloxZyZ0PUFBQUFBR2tNSEVZ
 
-> - The background of the greek oracle mode was taken from tumblr: https://24.media.tumblr.com/tumblr_md0g8pEBPX1qbzzgco1_500.png
+> - The background of the different modes was taken from pinterest: https://uk.pinterest.com/pin/758152918542245462/ 
 
-> - The background of the chinese fortune mode was taken from pinterest: https://uk.pinterest.com/pin/758152918542245462/
+> - The acropolis of the greek oracle mode was taken from tumblr: https://24.media.tumblr.com/tumblr_md0g8pEBPX1qbzzgco1_500.png
+
+> - The castle of the chinese fortune mode was taken from vectorstock: https://www.vectorstock.com/royalty-free-vector/pixel-japanese-temple-detailed-isolated-vector-22763654
+
+> - The pyramids of the egyptian rebirth mode was taken from vecteezy: https://www.vecteezy.com/vector-art/13210962-pyramids-in-egypt-desert-8bit-pixel-background
+
+> - The castle of the western fairy tale mode was taken from reddit: https://www.reddit.com/r/PixelArt/comments/o63ysf/my_first_pixel_art_a_castle/
 
 > - The coins in the chinese fortune mode was downloaded from nicepng.com :https://www.nicepng.com/ourpic/u2w7a9e6r5r5i1y3_8-bit-mario-coin-mario-coin-pixel/
 
 > - The golden & purple prophecies from the greek oracle mode was made by the handsomeunicorn from thehandsomeunicorn.itch.io :https://handsomeunicorn.itch.io/fireball-sprite
 
-> - The crown from the western fairytale mode was made by the Dino Pixel from dinopixel.com :https://dinopixel.com/crown-pixel-art-29971
+> - The Rebirth Sigil from the Egyptian Rebirth mode was made by the Dino Pixel from dinopixel.com :https://dinopixel.com/ankh-pixel-art-20029
+
+> - The Nile Blessings from the Egyptian Rebirth mode was made by the Hooded Edge from streangriddb.com :https://www.steamgriddb.com/icon/45822ankh-pixel-art-20029
+
+> - The True Love's Kiss from the Western Fairy Tale mode was found on Pinterest :https://mx.pinterest.com/pin/117938083984075257/
+
+> - The Crown from the Western Fairy Tale mode was made by the Dino Pixel from dinopixel.com :https://dinopixel.com/crown-pixel-art-29971
+
+> - A lot of the code was referrenced or taken from https://p5js.org
 
 > - A lot of the code was taken or inspired by Pippin Barr from https://pippinbarr.com/cart253
