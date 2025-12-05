@@ -2,7 +2,7 @@
 
 CAMELIA PITSILIS
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://cameliapitsilis-lgtm.github.io/cart253/variation-jam/)
 
 ## Description
 
@@ -33,7 +33,7 @@ CHANGES MADE TO THE MOD JAM CODE:
  - Added an extra instructions page with clickable next and previous arrows.
  - Added multiple game endings based on performance and choices with custom messaging for each.
  - Added two new game modes:
-    - Rebirth Mode: Catch nile blessings to increase your vitality points and make sure to avoir rebirth sigil to avoid resurrecting and restart the game.
+    - Rebirth Mode: Catch nile blessings to increase your vitality points and make sure to avoid rebirth sigil to avoid resurrecting and restart the game.
     - Fairy Tale Mode: Chose your destiny by catching either True Love's Kiss to gain love points or Crown of Power to gain power points.
  - Added time constraints to all the game modes.
  - Added custom scoring bars with dynamic filling based on points.
@@ -55,6 +55,8 @@ CHANGES MADE TO THE MOD JAM CODE:
 
 > - The background of the start screen was made by user3679043 from freepick.com: https://www.freepik.com/premium-vector/
 abstract-retro-pixel-art-80s-background-eps-10-vector-graphics_18568568.htm?epik=dj0yJnU9cklDOTBFUEtrbEdmNDZ6Q3lLWHl6XzZVYzRGWVdRdmcmcD0wJm49cTlVOG5fZnZBSVRoVUsyd3ZEcloxZyZ0PUFBQUFBR2tNSEVZ
+
+> - The frog was made by PixelArt from pinterest: couldnt find the link as the frog is no longer posted online.
 
 > - The background of the different modes was taken from pinterest: https://uk.pinterest.com/pin/758152918542245462/ 
 
