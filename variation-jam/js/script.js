@@ -375,39 +375,76 @@ function drawChooseDestinyScreen() {
 function drawScore() {
     let barWidth = 150;
     let barHeight = 20;
-    let fillWidth;
-    let currentPoints;
 
     if (gamemode === "oracle") {
-        fillWidth = map(wisdomPoints, 0, maxPoints, 0, barWidth);
-        currentPoints = wisdomPoints;
+        let wisdomFillWidth = map(wisdomPoints, 0, maxPoints, 0, barWidth);
+        fill("#37eeffff");
+        rect(30, 30, wisdomFillWidth, barHeight);
+        noFill();
+        stroke("#000000ff");
+        strokeWeight(2);
+        rect(30, 30, barWidth, barHeight);
+        fill("#ffffffff");
+        textSize(14);
+        textAlign(LEFT, CENTER);
+        text("" + wisdomPoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
+
     } else if (gamemode === "fortune") {
-        fillWidth = map(fortunePoints, 0, maxPoints, 0, barWidth);
-        currentPoints = fortunePoints;
+        let fortuneFillWidth = map(fortunePoints, 0, maxPoints, 0, barWidth);
+        fill("#09ff00ff");
+        rect(30, 30, fortuneFillWidth, barHeight);
+        noFill();
+        stroke("#000000ff");
+        strokeWeight(2);
+        rect(30, 30, barWidth, barHeight);
+        fill("#ffffffff");
+        textSize(14);
+        textAlign(LEFT, CENTER);
+        text("" + fortunePoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
+
     } else if (gamemode === "rebirth") {
-        fillWidth = map(vitalityPoints, 0, maxPoints, 0, barWidth);
-        currentPoints = vitalityPoints;
+        let rebirthFillWidth = map(vitalityPoints, 0, maxPoints, 0, barWidth);
+        fill("#9e37ffff");
+        rect(30, 30, rebirthFillWidth, barHeight);
+        noFill();
+        stroke("#000000ff");
+        strokeWeight(2);
+        rect(30, 30, barWidth, barHeight);
+        fill("#ffffffff");
+        textSize(14);
+        textAlign(LEFT, CENTER);
+        text("" + vitalityPoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
+
     } else if (gamemode === "fairytale") {
-        fillWidth = map(lovePoints, 0, maxPoints, 0, barWidth);
-        currentPoints = lovePoints;
-    } else {
+        // Love Points Bar
+        let loveFillWidth = map(lovePoints, 0, maxPoints, 0, barWidth);
+        fill("#ff00ccff");
+        rect(30, 30, loveFillWidth, barHeight);
+        noFill();
+        stroke("#000000ff");
+        strokeWeight(2);
+        rect(30, 30, barWidth, barHeight);
+        fill("#ffffffff");
+        textSize(14);
+        textAlign(LEFT, CENTER);
+        text("" + lovePoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
+
+        // Power Points Bar (below love)
+        let powerFillWidth = map(powerPoints, 0, maxPoints, 0, barWidth);
+        fill("#f6ff00ff");
+        rect(30, 60, powerFillWidth, barHeight);
+        noFill();
+        stroke("#000000ff");
+        strokeWeight(2);
+        rect(30, 60, barWidth, barHeight);
+        fill("#ffffffff");
+        textSize(14);
+        textAlign(LEFT, CENTER);
+        text("" + powerPoints + " / " + maxPoints, 30 + barWidth + 10, 60 + barHeight / 2);
+    }
+    else {
         return; // no score bar for other screens
     }
-
-    //Drawing Score Bar
-    fill("#12db59ff");
-    rect(30, 30, fillWidth, barHeight);
-    noFill();
-    stroke("#000000ff");
-    strokeWeight(2);
-    rect(30, 30, barWidth, barHeight);
-
-    //Drawing Score Number
-    fill("#ffffffff");
-    textSize(14);
-    textAlign(LEFT, CENTER);
-    strokeWeight(3);
-    text(currentPoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
 
     //REBIRTH MODE RESURRECTION PENALTY MESSAGE
     if (resetMessageTimer > 0) {
@@ -496,9 +533,7 @@ function moveCrown() {
 
     // reset when off left edge
     if (crown.x < -50) {
-        crown.x = width + 50;
-        crown.baseY = random(120, height - 120);
-        crown.angle = random(0, TWO_PI);
+        resetCrown();
     }
 }
 
@@ -564,6 +599,7 @@ function resetFly() {
     }
     else if (gamemode === "fairytale") {
         resetTrueLove();
+        resetCrown();
     }
 }
 //ORACLE MODE RESET//
@@ -592,6 +628,11 @@ function resetTrueLove() {
     trueLove.x = -50; // start offscreen left
     trueLove.y = random(100, height - 150); // random vertical start
     trueLove.angle = random(0, TWO_PI); // random sine phase
+}
+function resetCrown() {
+    crown.x = width + 50;
+    crown.baseY = random(120, height - 120);
+    crown.angle = random(0, TWO_PI);
 }
 
 //FROG---------------------------------------------------------------------------------------------------------------//
@@ -784,6 +825,7 @@ function checkRebirthSigil() {
 }
 //FAIRYTALE MODE//
 function checkFairytaleTongue() {
+    //True Love's Kiss
     const d = dist(frog.tongue.x, frog.tongue.y, trueLove.x, trueLove.y);
     const eaten = d < (frog.tongue.size / 2 + trueLove.size / 2);
 
@@ -795,6 +837,19 @@ function checkFairytaleTongue() {
         if (lovePoints >= maxPoints) {
             gamemode = "end";
             endMessage = "LOVE TRIUMPHS!\nThe frog becomes human\nby true love's kiss.";
+        }
+    }
+    //Crown of Power
+    const dCrown = dist(frog.tongue.x, frog.tongue.y, crown.x, crown.y);
+    const eatenCrown = dCrown < (frog.tongue.size / 2 + crown.size / 2);
+
+    if (eatenCrown) {
+        powerPoints++;
+        resetCrown();
+        frog.tongue.state = "inbound"; // retract tongue
+        if (powerPoints >= maxPoints) {
+            gamemode = "end";
+            endMessage = "POWER TRIUMPHS!\nThe frog rules the land!";
         }
     }
 }
