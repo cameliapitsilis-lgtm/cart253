@@ -172,7 +172,7 @@ function setup() {
         x: -50,
         baseY: random(100, height - 150),
         size: 40,
-        speed: 3,
+        speed: 5,
         angle: random(0, TWO_PI)   // for sin
     };
 
@@ -180,7 +180,7 @@ function setup() {
         x: width + 50,
         baseY: random(120, height - 120),
         size: 40,
-        speed: 3,
+        speed: 5,
         angle: random(0, TWO_PI)
     };
 }
@@ -265,6 +265,7 @@ function draw() {
         drawCrown();
         moveCrown();
         checkFairytaleTongue();
+        drawPowerScore()
 
         moveFrog();
         moveTongue();
@@ -428,7 +429,33 @@ function drawScore() {
     }
 }
 
+function drawPowerScore() {
+    let barWidth = 150;
+    let barHeight = 20;
+    let fillWidth;
+    let powerPoints;
 
+    if (gamemode === "fairytale") {
+        fillWidth = map(powerPoints, 0, maxPoints, 0, barWidth);
+    } else {
+        return; // no score bar for other screens
+    }
+
+    //Drawing Score Bar
+    fill("#fffb00ff");
+    rect(30, 30, fillWidth, barHeight);
+    noFill();
+    stroke("#000000ff");
+    strokeWeight(2);
+    rect(30, 30, barWidth, barHeight);
+
+    //Drawing Score Number
+    fill("#ffffffff");
+    textSize(14);
+    textAlign(LEFT, CENTER);
+    strokeWeight(3);
+    text(powerPoints + " / " + maxPoints, 30 + barWidth + 10, 30 + barHeight / 2);
+}
 //FLYING OBJECTS----------------------------------------------------------------------------------------------------//
 //ORACLE MODE//
 function moveOracleFly() {
